@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>レビュー登録</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<h2>レビュー登録確認</h2>
+	
+	<table class="confirm-table" th:object="${reviewRegistForm}">
+		<tr>
+			<td class="guide">【レジェンド】</td>
+			<td th:text="*{regendsId} + ' ' + *{regendsName}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【利用者名】</td>
+			<td th:text="*{userName}"></td>
+		</tr>		
+		<tr>
+			<td class="guide">【年齢】</td>
+			<td th:text="*{age}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【プレイ日】</td>
+			<td th:text="*{playDate}"></td>
+		</tr>				
+		<tr>
+			<td class="guide">【評価(1-10)】</td>
+			<td th:text="*{rating}"></td>
+		</tr>
+		<tr>
+			<td class="guide">【一言コメント】</td>
+			<td th:text="*{comment}"></td>
+		</tr>
+	</table>
+		<br><br>
+		<form th:action="@{confirm-regist-review}" method="POST" th:object="${reviewRegistForm}">
+			<input type="hidden" th:field="*{regendsId}">
+			<input type="hidden" th:field="*{userName}">
+			<input type="hidden" th:field="*{age}">
+			<input type="hidden" th:field="*{playDate}">
+			<input type="hidden" th:field="*{rating}">
+			<input type="hidden" th:field="*{comment}">
+			<input type="submit" value="登録実行" class="btn">
+		</form>
+		<br><br>
+	
+		<form th:action="@{show-review-form-ret}" method="POST" th:object="${reviewRegistForm}">
+			<input type="hidden" th:field="*{regendsId}">
+			<input type="hidden" th:field="*{regendsName}">
+			<input type="hidden" th:field="*{userName}">
+			<input type="hidden" th:field="*{age}">
+			<input type="hidden" th:field="*{playDate}">
+			<input type="hidden" th:field="*{rating}">
+			<input type="hidden" th:field="*{comment}">
+			<input type="submit" value="もどる" class="btn">
+		</form>
+</body>
+</html>

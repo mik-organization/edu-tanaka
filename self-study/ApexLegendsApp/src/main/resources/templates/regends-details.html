@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>レジェンド詳細</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+	
+	<h2>レジェンド詳細</h2>
+	
+	<div th:each="details : ${regendsDetails}">
+		<h1 th:text= "${details.regendsName}">Regends Name</h1>
+		<p th:text="～ + ${details.words} + ～" class="words">Regends Word</p> 
+
+		<div class="content">
+			<div class="image-container">
+				<img th:src ="@{${details.picturePath}}">
+			</div>
+		</div>
+		<br>
+	
+		<div class="container">
+			<div class="left">
+				<p th:text="'本名 : '+ '' + ${details.realName}">Real Name</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="left">
+				<p th:text="'年齢 : '+ '' + ${details.age}">Age</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="left">
+				<p th:text="'性別 : '+ '' + ${details.gender}">Gender</p>
+			</div>
+		</div>
+	
+		<div class="container">
+			<div class="left">
+				<p th:text="'戦術アビリティ: '+ '' + ${details.abilities}">Abilities</p>
+				<p th:text="${details.abiDescription}" class="small"></p>
+			</div>
+		</div>
+	
+		<div class="container">
+			<div class="left">
+				<p th:text="'パッシブ: '+ '' + ${details.passive}">Passive</p>
+				<p th:text="${details.pasDescripition}" class="small"></p>
+			</div>
+		</div>
+	
+		<div class="container">
+			<div class="left">
+				<p th:text="'アルティメットアビリティ: '+ '' + ${details.ult}">Ult</p>
+				<p th:text="${details.ultDescripition}" class="small"></p>
+			</div>
+		</div>		
+	</div>
+		
+	
+	<br>
+	<a th:href="@{/top}">トップ画面に戻る</a>
+
+</body>
+</html>

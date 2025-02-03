@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>レジェンド一覧登録</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<h2>レジェンド検索</h2>
+	<form th:action="@{/regends-search}" method="POST" th:object="${regendsSearchForm}">
+		【レジェンド名】（部分一致）<br><br>
+		<input type="text" th:field="*{regendsName}" class="search"><br>
+		<br>
+		<input type="submit" value="検索" class="btn">
+	</form>
+	
+	<div th:if="${regendsList} != null">
+		<h2>レジェンド一覧</h2>
+		
+		<table class="regends-list">
+			<tr>
+				<th colspan="2">レビュー</th><th>レジェンドID</th><th colspan="2">レジェンド名</th><th>クラス</th><th>平均評価</th>
+			</tr>
+			
+			<tr th:each="regends : ${regendsList}">
+				<td>
+					<form th:action="@{/search-review}" method="POST">
+						<input type="hidden" name="regendsId" th:value="${regends.regendsId}">
+						<input type="hidden" name="regendsName" th:value="${regends.regendsName}">
+						<input type="submit" value="一覧" class="tbtn"> 
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/show-review-form}" method="POST">
+						<input type="hidden" name="regendsId" th:value="${regends.regendsId}">
+						<input type="hidden" name="regendsName" th:value="${regends.regendsName}">
+						<input type="submit" value="登録" class="tbtn"> 
+					</form>
+				</td>
+				<td th:text="${regends.regendsId}"></td>
+				<td th:text="${regends.regendsName}"></td>
+				<td>
+					<form th:action="@{/regends-details}" method="POST">
+						<input type="hidden" name="regendsId" th:value="${regends.regendsId}">
+						<input type="hidden" name="regendsName" th:value="${regends.regendsName}">
+						<input type="submit" value="詳細" class="tbtn"> 
+					</form>
+				</td>
+				<td th:text="${regends.regendsClass}"></td>
+				<td th:text="${regends.formatAverageRating()}"></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

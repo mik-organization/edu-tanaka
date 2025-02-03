@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>レビュー編集</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<h2>レビュー編集</h2>
+	
+	<form th:action="@{/edit-review}" method="POST" th:object="${reviewEditForm}">
+		
+		【ID】<br>
+		<p th:text="*{reviewId}"></p>
+		<input type="hidden" th:field="*{reviewId}">
+		<div th:if="${#fields.hasErrors('reviewId')}" th:errors="*{reviewId}" class="error-msg"></div>
+		<br>
+		【レジェンド名】<br>
+		<p th:text="*{regendsId} + ' ' + *{regendsName}"></p>
+		<input type="hidden" th:field="*{regendsId}">
+		<input type="hidden" th:field="*{regendsName}">
+		<div th:if="${#fields.hasErrors('regendsId')}" th:errors="*{regendsId}" class="error-msg"></div>
+		<br>
+		【利用者名】<br>
+		<input type="text" th:field="*{userName}"><br>
+		<div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error-msg"></div>
+		<br><br>					
+		【年齢】<br>
+		<input type="text" th:field="*{age}"><br>
+		<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error-msg"></div>
+		<br><br>						
+		【プレイ日】<br>
+		<input type="date" th:field="*{playDate}"><br>
+		<div th:if="${#fields.hasErrors('playDate')}" th:errors="*{playDate}" class="error-msg"></div>
+		<br><br>
+		【評価(1-10)】<br>
+		<select th:field="*{rating}">
+			<option value="0">選択してください。</option>
+			<!--固定のオプション1-10-->
+			<option th:each="option : ${#numbers.sequence(1, 10)}"
+				th:value="${option}"
+				th:text="${option}"
+				th:selected="${option == rating}">
+		</option>
+		</select><br>
+		<div th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="error-msg"></div>
+		<br><br>				
+		【一言コメント】<br>
+		<input type="text" th:field="*{comment}" class="comment"><br>
+		<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="error-msg"></div>
+		<br><br><br>
+		<input type="submit" value="更新" class="btn">						
+	</form>
+	
+	<form th:action="@{/search-review}" method="POST" th:object="${reviewEditForm}">
+		<input type="hidden" th:field="*{regendsId}">
+		<input type="hidden" th:field="*{regendsName}">
+		<input type="submit" value="もどる" class="btn">
+	</form>
+	
+	<br>
+	<a th:href="@{/top}">トップ画面に戻る</a>
+
+</body>
+</html>
