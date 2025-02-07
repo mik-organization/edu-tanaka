@@ -8,3 +8,10 @@
 
 # 運用ルール
 - 必ずissueごとにブランチを作成し、そこで作業する
+
+# Apex app
+## DB接続情報
+spring.datasource.url=jdbc:mysql://localhost:3306/apex_db  
+spring.datasource.username=apex_user  
+spring.datasource.password=apex  
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver  
