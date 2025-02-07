@@ -32,5 +32,3 @@ CREATE TABLE t_review (
   KEY regends_id (regends_id),
   CONSTRAINT t_review_ibfk_1 FOREIGN KEY (regends_id) REFERENCES m_apex (regends_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
-
-/*  */
