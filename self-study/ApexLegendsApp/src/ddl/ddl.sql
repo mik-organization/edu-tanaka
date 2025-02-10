@@ -16,7 +16,7 @@ create table m_apex (
   words varchar(255) not null,
   picture_path varchar(255) not null,
   primary key (regends_id)
-) engine = innodb auto_increment = 27 default charset = utf8mb3;
+) engine = innodb auto_increment = 27 default charset = utf8mb4;
 
 /* レビューテーブル作成 */
 -- apex_db.t_review definition
@@ -31,4 +31,4 @@ create table t_review (
   primary key (review_id),
   key regends_id (regends_id),
   constraint t_review_ibfk_1 foreign key (regends_id) references m_apex (regends_id)
-) engine = innodb auto_increment = 12 default charset = utf8mb3;
+) engine = innodb auto_increment = 12 default charset = utf8mb4;
