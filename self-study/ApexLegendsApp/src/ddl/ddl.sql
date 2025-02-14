@@ -1,4 +1,4 @@
-/* apexマスタ作成 */
+/* Apexマスタ作成 */
 -- apex_db.m_apex definition
 create table m_apex (
   regends_id int not null auto_increment,
