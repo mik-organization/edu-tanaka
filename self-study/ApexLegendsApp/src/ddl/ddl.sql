@@ -17,7 +17,7 @@ create table apex_db.m_apex (
   words varchar(255) not null comment 'セリフ',
   picture_path varchar(255) not null comment '画像パス',
   primary key (regends_id)
-) engine = innodb default charset = utf8mb4 comment='レジェンドマスタテーブル';
+) engine = innodb default charset = utf8mb4 comment='レジェンドマスタ';
 
 create table apex_db.t_review (
   review_id int not null auto_increment comment 'ID',
