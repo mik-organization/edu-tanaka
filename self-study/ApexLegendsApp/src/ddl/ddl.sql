@@ -1,6 +1,7 @@
-/* Apexマスタ作成 */
--- apex_db.m_apex definition
-create table m_apex (
+drop schema if exists apex_db;
+create schema apex_db;
+
+create table apex_db.m_apex (
   regends_id int not null auto_increment comment 'レジェンドID',
   regends_name varchar(32) not null comment 'レジェンド名',
   real_name varchar(32) not null comment '本名',
@@ -18,9 +19,7 @@ create table m_apex (
   primary key (regends_id)
 ) engine = innodb default charset = utf8mb4 comment='レジェンドマスタテーブル';
 
-/* レビューテーブル作成 */
--- apex_db.t_review definition
-create table t_review (
+create table apex_db.t_review (
   review_id int not null auto_increment comment 'レビューID',
   regends_id int not null comment 'レジェンドID',
   user_name varchar(32) not null comment '利用者名',
