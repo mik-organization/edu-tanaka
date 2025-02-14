@@ -21,7 +21,7 @@ create table apex_db.m_apex (
 
 create table apex_db.t_review (
   review_id int not null auto_increment comment 'レビューID',
-  regends_id int not null comment 'レジェンドID',
+  regends_id int not null comment 'ID',
   user_name varchar(32) not null comment '利用者名',
   play_date date not null comment 'プレイ日',
   rating int not null comment '評価',
