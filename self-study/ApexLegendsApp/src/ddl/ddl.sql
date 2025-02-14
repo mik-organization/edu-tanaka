@@ -2,7 +2,7 @@ drop schema if exists apex_db;
 create schema apex_db;
 
 create table apex_db.m_apex (
-  regends_id int not null auto_increment comment 'レジェンドID',
+  regends_id int not null auto_increment comment 'ID',
   regends_name varchar(32) not null comment 'レジェンド名',
   real_name varchar(32) not null comment '本名',
   age varchar(32) not null comment '年齢',
