@@ -24,10 +24,10 @@
   - ApexLegendsを遊んでみてレビューをしていただける方
  &nbsp;
 - 動作環境
-  - OS:Windows、Mac
-  - ブラウザ:Microsoft Edge、Google Chrome
-  - 総合開発環境:Eclipse、Visual Studio Code、IntelliJ IDEA
-  - フレームワーク:SpringBoot
+  - OS：Windows、Mac
+  - ブラウザ：Microsoft Edge、Google Chrome
+  - 総合開発環境：Eclipse、Visual Studio Code、IntelliJ IDEA
+  - フレームワーク：SpringBoot
 
 ## 目的
 
