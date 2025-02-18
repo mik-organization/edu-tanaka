@@ -20,8 +20,8 @@
 - トップページを開く(GoogleChromeの場合)
 
   - ブラウザのアドレスバーに　[http://localhost:8080/top](http://localhost:8080/top)　と入力し、検索します
- ![alt text](image-4.png)
+ ![](image-4.png)
   - レジェンド検索ができる画面になります
 こちらでは**部分一致検索**または**全件検索**ができます。
- ![alt text](image-3.png)
+ ![](image-3.png)
  詳細については、「2.検索機能」をご覧ください。
