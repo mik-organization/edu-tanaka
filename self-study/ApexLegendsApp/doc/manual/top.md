@@ -5,7 +5,6 @@
 - 対象者
   - ApexLegendsに興味のある方
   - ApexLegendsを遊んでみてレビューをしていただける方
- &nbsp;
 - 動作環境
   - OS：Windows、Mac
   - ブラウザ：Microsoft Edge、Google Chrome
@@ -21,12 +20,8 @@
 **1.トップページを開く**(GoogleChromeの場合)
 
 - ブラウザのアドレスバーに　[**http://localhost:8080/top**]　と入力し、検索します
-&nbsp;
  ![alt text](image-4.png){ width="80%" }
-&nbsp;
 - レジェンド検索ができる画面になります
 こちらでは`部分一致検索`または`全件検索`ができます。
-&nbsp;
  ![alt text](image-3.png){ width="80%" }
-&nbsp;
  詳細については、「2.検索機能」をご覧ください。
