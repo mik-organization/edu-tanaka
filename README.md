@@ -8,6 +8,8 @@
 
 # 運用ルール
 - 必ずissueごとにブランチを作成し、そこで作業する
+- インデントは半角SP2つ
+- 指摘対応について、1指摘対応につき1commitし、指摘のリプライにコミットハッシュを貼り付ける
 
 # ブランチ運用イメージ
 
@@ -19,3 +21,11 @@ main ---ddl----->--ddl削除--------------------
             2-apex-ddl   ---ddl削除--ddl追加----------
               ddlが存在
 ```
+
+# Apex app
+## DB接続情報
+spring.datasource.url=jdbc:mysql://localhost:3306/apex_db  
+spring.datasource.username=apex_user  
+spring.datasource.password=apex  
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver  
+
