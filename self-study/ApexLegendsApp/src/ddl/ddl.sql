@@ -30,4 +30,4 @@ create table apex_db.t_review (
   primary key (review_id),
   key regends_id (regends_id),
   constraint t_review_ibfk_1 foreign key (regends_id) references m_apex (regends_id)
-) engine = innodb default charset = utf8mb4 comment='レビュー情報を格納するテーブル';
+) engine = innodb default charset = utf8mb4 comment='レビュー情報';
