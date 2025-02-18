@@ -17,7 +17,7 @@
 
 ## 操作方法
 
-- トップページを開く(GoogleChromeの場合)
+- トップページを開く
 
   - ブラウザのアドレスバーに　[http://localhost:8080/top](http://localhost:8080/top)　と入力し、検索します
  ![](image-4.png)
