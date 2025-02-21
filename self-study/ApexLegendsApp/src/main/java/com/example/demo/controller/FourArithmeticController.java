@@ -46,7 +46,7 @@ public class FourArithmeticController {
 	}
 
 	/**
-	 * divide 乗算
+	 * divide 除算
 	 */
 	@PostMapping("/divide")
 	public int divide(@RequestBody NumJsonRequest request) {
