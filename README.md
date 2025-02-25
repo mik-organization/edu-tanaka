@@ -30,7 +30,7 @@ spring.datasource.password=apex
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver  
 
 ## 特筆すべき仕様
-### m_legendのage、age_exについて
+### m_legendのage、age_noteについて
 - 年齢を設定する場合はageに年齢を設定する
 - 年齢が不明の場合はageをnullにする
 - 年齢に関する特記事項がある場合は、age_noteに設定する
