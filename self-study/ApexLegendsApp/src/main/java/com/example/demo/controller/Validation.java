@@ -15,10 +15,9 @@ public class Validation {
     }
   }
 
-  // 除算のみnum2が0のとき、エラーメッセージを返す
-  public static void validationDivideRequest(BindingResult result, NumJsonRequest request) throws BindException {
+  // 除数が0の場合、エラー表示
+  public static void validationDivideRequest(NumJsonRequest request) throws IllegalArgumentException {
 
-    validationRequest(result);
     if (request.getNum2() == 0) {
       throw new IllegalArgumentException("除数は0にはできません");
     }

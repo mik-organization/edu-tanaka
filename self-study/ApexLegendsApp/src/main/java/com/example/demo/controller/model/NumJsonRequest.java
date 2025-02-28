@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NumJsonRequest {
   @NotNull(message = "num1は必須です。")
-  @Min(value = -2147483647, message = "-2147483647以上を指定してください。")
-  @Max(value = 2147483647, message = "2147483647以下を指定してください。")
+  @Min(value = -999999999, message = "num1は1～9桁の数字で入力してください。")
+  @Max(value = 999999999, message = "num1は1～9桁の数字で入力してください。")
   public Integer num1;
 
   @NotNull(message = "num2は必須です。")
-  @Min(value = -2147483647, message = "-2147483647以上を指定してください。")
-  @Max(value = 2147483647, message = "2147483647以下を指定してください。")
+  @Min(value = -999999999, message = "num2は1～9桁の数字で入力してください。")
+  @Max(value = 999999999, message = "num2は1～9桁の数字で入力してください。")
   public Integer num2;
 
 }
