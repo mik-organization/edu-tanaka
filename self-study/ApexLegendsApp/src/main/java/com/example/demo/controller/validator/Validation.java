@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.validator;
 
 import com.example.demo.controller.model.NumJsonRequest;
 
