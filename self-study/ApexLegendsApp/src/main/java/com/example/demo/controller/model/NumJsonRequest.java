@@ -18,7 +18,7 @@ public class NumJsonRequest {
   @NotNull(message = "num1は必須です。")
   @Min(value = -999999999, message = "num1は1～9桁の数字で入力してください。")
   @Max(value = 999999999, message = "num1は1～9桁の数字で入力してください。")
-  public Integer num1;
+  private Integer num1;
 
   @NotNull(message = "num2は必須です。")
   @Min(value = -999999999, message = "num2は1～9桁の数字で入力してください。")
