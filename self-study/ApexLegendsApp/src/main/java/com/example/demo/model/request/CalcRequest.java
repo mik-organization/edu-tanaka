@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * JSONでリクエストを受け取る
+ * 四則演算用の数値格納リクエストモデル
  */
 @Data
 @AllArgsConstructor
