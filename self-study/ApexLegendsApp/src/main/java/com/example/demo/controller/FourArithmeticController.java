@@ -45,9 +45,8 @@ public class FourArithmeticController {
 
     BigDecimal bigDecimalNum1 = BigDecimal.valueOf(request.getNum1());
     BigDecimal bigDecimalNum2 = BigDecimal.valueOf(request.getNum2());
-    BigDecimal product = bigDecimalNum1.multiply(bigDecimalNum2);
 
-    return product;
+    return bigDecimalNum1.multiply(bigDecimalNum2);
   }
 
   /**
