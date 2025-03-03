@@ -1,4 +1,4 @@
-package com.example.demo.controller.model;
+package com.example.demo.model.request;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NumJsonRequest {
+public class CalcRequest {
   @NotNull(message = "num1は必須です。")
   @Min(value = -999999999, message = "num1は1～9桁の数字で入力してください。")
   @Max(value = 999999999, message = "num1は1～9桁の数字で入力してください。")
