@@ -56,7 +56,7 @@ public class FourArithmeticController {
   @PostMapping("/divide")
   public int divide(@Valid @RequestBody NumJsonRequest request, BindingResult result) throws BindException {
 
-    Validation.validationDivideRequest(request); // 除数0エラー
+    Validation.validationDivideRequest(request);
 
     return request.getNum1() / request.getNum2();
   }
