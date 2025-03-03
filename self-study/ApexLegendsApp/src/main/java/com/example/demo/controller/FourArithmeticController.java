@@ -20,7 +20,7 @@ import com.example.demo.controller.model.NumJsonRequest;
 public class FourArithmeticController {
 
   /**
-   * add 加算
+   * 和を返す
    */
   @PostMapping("/add")
   public int add(@Valid @RequestBody NumJsonRequest request, BindingResult result) throws BindException {
@@ -30,7 +30,7 @@ public class FourArithmeticController {
   }
 
   /**
-   * subtract 減算
+   * 差を返す
    */
   @PostMapping("/subtract")
   public int subtract(@Valid @RequestBody NumJsonRequest request, BindingResult result) throws BindException {
@@ -40,7 +40,7 @@ public class FourArithmeticController {
   }
 
   /**
-   * multiply 乗算
+   * 積を返す
    */
   @PostMapping("/multiply")
   public BigDecimal multiply(@Valid @RequestBody NumJsonRequest request, BindingResult result) throws BindException {
@@ -54,7 +54,7 @@ public class FourArithmeticController {
   }
 
   /**
-   * divide 除算
+   * 商を返す
    */
   @PostMapping("/divide")
   public int divide(@Valid @RequestBody NumJsonRequest request, BindingResult result) throws BindException {
