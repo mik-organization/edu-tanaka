@@ -23,10 +23,10 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 		
 		String sql =
 				"INSERT INTO t_review" +
-				"(regends_id, user_name, age, play_date, rating, comment)" +
+				"(legend_id, user_name, age, play_date, rating, comment)" +
 				"VALUES(?, ?, ?, ?, ?, ? )";
 		
-		jdbcTemplate.update(sql, review.getRegendsId(),
+		jdbcTemplate.update(sql, review.getLegendId(),
 								 review.getUserName(),
 								 review.getAge(),
 								 review.getPlayDate(),
@@ -36,37 +36,37 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 	}
 
 	@Override
-	public List<Review> selectByRegendsId(int regendsId) {
+	public List<Review> selectByLegendId(int legendId) {
 		
 		String sql =
-				"SELECT									" +
-				"	review_id,							" +
-				"	regends_id,							" +
-				"	user_name,							" +
-				"	age,								" +
-				"	play_date,							" +
-				"	rating,								" +
-				"	comment								" +
-				"FROM									" +
-				"	t_review							" +
-				"WHERE									" +
-				"	regends_id = ?						" +
-				"ORDER BY								" +
-				"	play_date DESC,						" +
-				"	review_id ASC						";
+				"SELECT                                 " +
+				"	id,                                 " +
+				"	legend_id,                          " +
+				"	user_name,                          " +
+				"	age,                                " +
+				"	play_date,                          " +
+				"	rating,                             " +
+				"	comment                             " +
+				"FROM                                   " +
+				"	t_review                            " +
+				"WHERE                                  " +
+				"	legend_id = ?                       " +
+				"ORDER BY                               " +
+				"	play_date DESC,                     " +
+				"	id ASC                              ";
 		
 		
-		//SQLで検索（プレースホルダ：引数で受け取ってregendsId）
+		//SQLで検索（プレースホルダ：引数で受け取ってlegendId）
 		List<Map<String, Object>> list
-			=jdbcTemplate.queryForList(sql, regendsId);
+			=jdbcTemplate.queryForList(sql, legendId);
 		
 		
 		//値の取得⇒結果の格納
 		List<Review> result = new ArrayList<Review>();		//結果の初期化
 		for (Map<String,Object> one : list) {
 			Review review = new Review();
-			review.setReviewId((int)one.get("review_id"));
-			review.setRegendsId((int)one.get("regends_id"));
+			review.setId((int)one.get("id"));
+			review.setLegendId((int)one.get("legend_id"));
 			review.setUserName((String)one.get("user_name"));
 			review.setAge((int)one.get("age"));
 			review.setPlayDate((Date)one.get("play_date"));
@@ -85,15 +85,15 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 		
 		String sql =
 				"UPDATE               " +
-				"	t_review		  " +
-				"SET				  " +
-				"	user_name = ?,	  " +
-				"	age	= ?,		  " +
+				"	t_review          " +
+				"SET                  " +
+				"	user_name = ?,    " +
+				"	age	= ?,          " +
 				"	play_date = ?,    " +
-				"	rating = ?,		  " +
+				"	rating = ?,       " +
 				"   comment = ?       " +
-				"WHERE				  " +
-				"	review_id = ?	  "; 
+				"WHERE                " +
+				"	id = ?            "; 
 		
 		jdbcTemplate.update(sql,
 				review.getUserName(),
@@ -101,7 +101,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 				review.getPlayDate(),
 				review.getRating(),
 				review.getComment(),
-				review.getReviewId()	);
+				review.getId()	);
 	}
 
 	@Override
@@ -112,9 +112,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 				"FROM				" +
 				"	t_review		" +
 				"WHERE				" +
-				"	review_id = ?	";
+				"	id = ?	";
 		
-		jdbcTemplate.update(sql, review.getReviewId());
+		jdbcTemplate.update(sql, review.getId());
 		
 	}
 

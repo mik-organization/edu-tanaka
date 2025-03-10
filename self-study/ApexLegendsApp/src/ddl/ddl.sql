@@ -8,7 +8,7 @@ create table apex_db.m_legend (
   age int comment '年齢',
   age_note varchar(32) comment 'ageに付随する特記事項',
   gender varchar(32) comment '性別',
-  class varchar(32) comment 'クラス名',
+  legend_class varchar(32) comment 'クラス名',
   abilities varchar(32) comment 'アビリティ名',
   abi_description varchar(255) comment 'アビリティの説明',
   passive varchar(32) comment 'パッシブ名',

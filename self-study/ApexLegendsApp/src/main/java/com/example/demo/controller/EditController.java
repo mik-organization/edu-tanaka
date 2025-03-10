@@ -58,8 +58,8 @@ public class EditController {
 		}
 	
 		Review r = new Review();
-		r.setReviewId(form.getReviewId());
-		r.setRegendsId(form.getRegendsId());
+		r.setId(form.getId());
+		r.setLegendId(form.getLegendId());
 		r.setUserName(form.getUserName());
 		r.setAge(form.getAge());
 		r.setPlayDate(form.getPlayDate());

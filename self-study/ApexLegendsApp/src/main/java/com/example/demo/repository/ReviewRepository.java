@@ -8,7 +8,7 @@ public interface ReviewRepository {
 	
 	void add(Review review);
 	
-	List<Review>selectByRegendsId(int regendsId);
+	List<Review>selectByLegendId(int legendId);
 	
 	void update(Review review);
 	

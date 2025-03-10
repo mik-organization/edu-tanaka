@@ -6,6 +6,6 @@ import com.example.demo.entity.Review;
 
 public interface ReviewListService {
 	
-	List<Review> findByRegendsId(int regendsId);
+	List<Review> findByLegendId(int legendId);
 
 }

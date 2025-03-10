@@ -16,10 +16,10 @@ public class ReviewListServiceImpl implements ReviewListService {
 	private final ReviewRepository repository;
 
 	@Override
-	public List<Review> findByRegendsId(int regendsId) {
+	public List<Review> findByLegendId(int legendId) {
 		
 		List<Review> list
-				= repository.selectByRegendsId(regendsId);
+				= repository.selectByLegendId(legendId);
 		
 		return list;
 	}
