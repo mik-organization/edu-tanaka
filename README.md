@@ -20,6 +20,9 @@
 self-study\ApexLegendsApp\doc\test  
 ファイル名は下記とする  
 issuexxx_issueタイトル.md
+## プルリク（レビュー依頼）について
+- 作業途中でも随時プッシュして、プルリクをDraftで作成しておく
+- 一通り作業が完了したらOpenにする
 
 # ブランチ運用イメージ
 
