@@ -65,7 +65,7 @@ public class RegistController {
 		}
 	
 		Review r = new Review();
-		r.setRegendsId(form.getRegendsId());
+		r.setLegendId(form.getLegendId());
 		r.setUserName(form.getUserName());
 		r.setAge(form.getAge());
 		r.setPlayDate(form.getPlayDate());

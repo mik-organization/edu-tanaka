@@ -20,4 +20,5 @@ public class Details {
   private String pasDescripition;
   private String ult;
   private String ultDescripition;
+  private int sortIndex;
 }

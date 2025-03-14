@@ -8,38 +8,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entity.Regends;
-import com.example.demo.form.RegendsSearchForm;
-import com.example.demo.service.RegendsListService;
+import com.example.demo.entity.Legend;
+import com.example.demo.form.LegendSearchForm;
+import com.example.demo.service.LegendListService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class RegendsListController {
+public class LegendListController {
 	
-	private final RegendsListService service;
+	private final LegendListService service;
 
 	/*--最初のリクエスト-------------*/
 	@GetMapping("/top")
-	public String regendsList(
-			@ModelAttribute RegendsSearchForm form) {
+	public String legendList(
+			@ModelAttribute LegendSearchForm form) {
 			
-		return "regends-list";
+		return "legend-list";
 	}
 	
 	/*--検索リクエスト-------------*/
-	@PostMapping("/regends-search")
-	public String redendsSearch( 
-			@ModelAttribute RegendsSearchForm form,
+	@PostMapping("legend-search")
+	public String ledendSearch( 
+			@ModelAttribute LegendSearchForm form,
 			Model model) {
 	
-		List<Regends>list
-			=service.findByNamecard(form.getRegendsName());
+		List<Legend>list
+			=service.findByNamecard(form.getName());
 		
-		model.addAttribute("regendsList",list);
+		model.addAttribute("legendList",list);
 		
-		return "regends-list";
+		return "legend-list";
 	}
 	
 	

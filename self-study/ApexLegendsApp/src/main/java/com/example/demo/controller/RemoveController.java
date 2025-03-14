@@ -26,13 +26,10 @@ public class RemoveController {
 			@Validated @ModelAttribute ReviewRemoveForm form,
 			BindingResult result) {
 		
-		
-		//項目内容にエラーがある場合には例外を発生させる。
 		if (result.hasErrors()) {
 			throw new IllegalArgumentException("**removeReview()**");
 		}
 		
-		//正常な場合にレビュー削除確認画面に遷移する
 		return "confirm-remove-review";
 	}
 	
@@ -50,8 +47,8 @@ public class RemoveController {
 		}
 	
 		Review r = new Review();
-		r.setReviewId(form.getReviewId());
-		r.setRegendsId(form.getRegendsId());
+		r.setId(form.getId());
+		r.setLegendId(form.getLegendId());
 		r.setUserName(form.getUserName());
 		r.setAge(form.getAge());
 		r.setPlayDate(form.getPlayDate());

@@ -26,7 +26,7 @@ public class ReviewListController {
 			Model model) {
 		
 		List<Review> list 
-			= service.findByRegendsId(form.getRegendsId());	
+			= service.findByLegendId(form.getId());	
 		
 		if (list.size() > 0 ) {
 			model.addAttribute("reviewList", list);

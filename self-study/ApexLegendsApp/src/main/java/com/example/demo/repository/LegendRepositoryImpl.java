@@ -25,7 +25,7 @@ public class LegendRepositoryImpl implements LegendRepository {
         "SELECT                                               "
             + "	ml.id,                                        "
             + "	ml.name,                                      "
-            + "	ml.legend_class                               "
+            + "	ml.legend_class,                              "
             + "	COALESCE(AVG(tr.rating), 0.0 ) average_rating "
             + "FROM                                           "
             + "	m_legend ml                                   "

@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Details;
 import com.example.demo.form.ReviewSearchForm;
-import com.example.demo.service.RegendsDetailsService;
+import com.example.demo.service.LegendDetailsService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class RegendsDetailsController {
+public class LegendDetailsController {
 	
-	private final RegendsDetailsService service;
+	private final LegendDetailsService service;
 	
-	@PostMapping("/regends-details")
-	private String regendsDetails(
+	@PostMapping("/legend-details")
+	private String legendDetails(
 			@ModelAttribute ReviewSearchForm form,
 			Model model) {
 		
 		List<Details> list
-			= service.findByRegendsId(form.getRegendsId());
+			= service.findById(form.getId());
 		
 		if (list.size() > 0) {
-		model.addAttribute("regendsDetails", list);
+		model.addAttribute("legensDetails", list);
 		
 		}
 		
-		return "regends-details";
+		return "legend-details";
 	}
 	
 
