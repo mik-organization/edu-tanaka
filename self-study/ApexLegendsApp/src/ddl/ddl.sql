@@ -17,6 +17,7 @@ create table apex_db.m_legend (
   ult_description varchar(255) comment 'アルティメットアビリティの説明',
   words varchar(255) comment 'セリフ',
   picture_path varchar(255) comment '画像パス',
+  sort_index int not null comment '表示順',
   primary key (id)
 ) engine = innodb default charset = utf8mb4 comment='レジェンドマスタ';
 
