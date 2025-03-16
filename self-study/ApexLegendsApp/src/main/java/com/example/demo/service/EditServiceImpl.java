@@ -7,17 +7,21 @@ import com.example.demo.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/** レビュー編集用のserviceクラス */
 @Service
 @RequiredArgsConstructor
 public class EditServiceImpl implements EditService {
-	
-	private final ReviewRepository repository;
 
-	@Override
-	public void edit(Review review) {
-		
-		repository.update(review);
+  private final ReviewRepository repository;
 
-	}
+  /**
+   * repositoryクラスへのアクセス
+   *
+   * @param legendId
+   */
+  @Override
+  public void edit(Review review) {
 
+    repository.update(review);
+  }
 }

@@ -4,15 +4,14 @@ import java.util.List;
 
 import com.example.demo.entity.Legend;
 
-/**
- * 
- */
+/** レジェンド検索処理用のserviceインタフェース */
 public interface LegendListService {
-	
-	/**
-	 * @param name
-	 * @return
-	 */
-	List<Legend>findByNamecard(String name);
 
+  /**
+   * レジェンド検索処理の型定義
+   *
+   * @param name
+   * @return 指定されたレジェンドリスト
+   */
+  List<Legend> findByNamecard(String name);
 }

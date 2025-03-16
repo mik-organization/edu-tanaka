@@ -9,19 +9,24 @@ import com.example.demo.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/** レビュー表示用のserviceクラス */
 @Service
 @RequiredArgsConstructor
 public class ReviewListServiceImpl implements ReviewListService {
-	
-	private final ReviewRepository repository;
 
-	@Override
-	public List<Review> findByLegendId(int legendId) {
-		
-		List<Review> list
-				= repository.selectByLegendId(legendId);
-		
-		return list;
-	}
+  private final ReviewRepository repository;
 
+  /**
+   * repositoryクラスへのアクセス
+   *
+   * @param legendId
+   * @return repositoryクラスから渡されたリスト *
+   */
+  @Override
+  public List<Review> findByLegendId(int legendId) {
+
+    List<Review> list = repository.selectByLegendId(legendId);
+
+    return list;
+  }
 }

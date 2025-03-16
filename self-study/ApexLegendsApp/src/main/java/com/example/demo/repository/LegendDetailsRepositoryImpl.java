@@ -11,14 +11,19 @@ import com.example.demo.entity.Details;
 
 import lombok.RequiredArgsConstructor;
 
-/** レジェンドの詳細情報を実装するクラス */
+/** レジェンド詳細表示用のrepositoryクラス */
 @Repository
 @RequiredArgsConstructor
 public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
 
   private final JdbcTemplate jdbcTemplate;
 
-  @Override
+  /**
+ * レジェンド詳細のDB検索
+ * @param legendId
+ * @return 結果
+ */
+@Override
   public List<Details> selectByLegendId(int legendId) {
 
     String sql =

@@ -4,14 +4,14 @@ import java.util.List;
 
 import com.example.demo.entity.Details;
 
-/**LegendDetailsServiceインタフェース */
+/** レジェンド詳細表示用のserviceインタフェース */
 public interface LegendDetailsService {
 
   /**
-   * Detailsクラスのリスト取得
+   * レジェンド詳細取得の型定義
    *
-   * @param id
-   * @return 詳細リスト
+   * @param legendId
+   * @return 指定されたレジェンド詳細リスト
    */
   List<Details> findByLegendId(int legendId);
 }

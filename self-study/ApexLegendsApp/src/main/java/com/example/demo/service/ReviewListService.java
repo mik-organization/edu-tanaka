@@ -4,8 +4,14 @@ import java.util.List;
 
 import com.example.demo.entity.Review;
 
+/** レビュー表示用のserviceインタフェース */
 public interface ReviewListService {
-	
-	List<Review> findByLegendId(int legendId);
 
+  /**
+   * レビュー表示処理の型定義
+   *
+   * @param legendId
+   * @return 指定されたレビューリスト
+   */
+  List<Review> findByLegendId(int legendId);
 }

@@ -9,27 +9,24 @@ import com.example.demo.repository.LegendDetailsRepository;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * LegendDetailsServiceを実装するクラス
- */
+/** レジェンド詳細表示用のserviceクラス */
 @Repository
 @RequiredArgsConstructor
 public class LegendDetailsServiceImpl implements LegendDetailsService {
-	
-	private final LegendDetailsRepository repository;
-	
 
+  private final LegendDetailsRepository repository;
 
-	/**
-	 *
-	 */
-	@Override
-	public List<Details> findByLegendId(int legendId) {
-	
-		List<Details> list
-			=repository.selectByLegendId(legendId);
-		
-		return list;
-	}
+  /**
+   * repositoryクラスへのアクセス
+   *
+   * @param legendId
+   * @return repositoryクラスから渡されたリスト
+   */
+  @Override
+  public List<Details> findByLegendId(int legendId) {
 
+    List<Details> list = repository.selectByLegendId(legendId);
+
+    return list;
+  }
 }
