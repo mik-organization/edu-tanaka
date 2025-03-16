@@ -30,7 +30,9 @@ public class LegendDetailsController {
   @PostMapping("/legend-details")
   private String legendDetails(@ModelAttribute ReviewSearchForm form, Model model) {
 
-    List<Details> list = service.findById(form.getId());
+    List<Details> list = service.findById(form.getId()); 
+    
+    System.out.println(list); 
 
     if (list.size() > 0) {
       model.addAttribute("legendDetails", list);

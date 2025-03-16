@@ -38,7 +38,7 @@ public class LegendRepositoryImpl implements LegendRepository {
             + "	ml.name,                                      "
             + "	ml.legend_class                               "
             + "ORDER BY                                       "
-            + "	ml.id                                         ";
+            + "	ml.sort_index                                         ";
 
     String p = "%" + name + "%"; // プレースホルダの値
 

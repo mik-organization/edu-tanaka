@@ -27,8 +27,7 @@
 
 		<div class="container">
 			<div class="left">
-				<p th:text="'年齢 : ' + (${details.age} != 0 ? ${details.age} + '歳' : '不明') + 
-                       (${details.ageNote} != null ? ${details.ageNote} : '')">Age</p>
+        <p th:text="'年齢 : ' + ${details.ageStr}">Age</p>
 			</div>
 		</div>
 
