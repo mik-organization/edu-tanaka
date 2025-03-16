@@ -13,27 +13,29 @@ import com.example.demo.service.LegendDetailsService;
 
 import lombok.RequiredArgsConstructor;
 
+/** 指定したレジェンドの詳細を表示するコントローラー */
 @Controller
 @RequiredArgsConstructor
 public class LegendDetailsController {
-	
-	private final LegendDetailsService service;
-	
-	@PostMapping("/legend-details")
-	private String legendDetails(
-			@ModelAttribute ReviewSearchForm form,
-			Model model) {
-		
-		List<Details> list
-			= service.findById(form.getId());
-		
-		if (list.size() > 0) {
-		model.addAttribute("legensDetails", list);
-		
-		}
-		
-		return "legend-details";
-	}
-	
 
+  private final LegendDetailsService service;
+
+  /**
+   * 指定したレジェンドの詳細データを取得
+   *
+   * @param form
+   * @param model
+   * @return
+   */
+  @PostMapping("/legend-details")
+  private String legendDetails(@ModelAttribute ReviewSearchForm form, Model model) {
+
+    List<Details> list = service.findById(form.getId());
+
+    if (list.size() > 0) {
+      model.addAttribute("legendDetails", list);
+    }
+
+    return "legend-details";
+  }
 }

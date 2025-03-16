@@ -40,7 +40,9 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
             + "FROM                                  "
             + "  m_legend                            "
             + "WHERE                                 "
-            + "  id = ?                              ";
+            + "  id = ?                              "
+            + "ORDER BY                              "
+            + "sort_index                              ";
     // SQLで検索
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, id);
 
@@ -53,7 +55,13 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
       details.setWords((String) one.get("words"));
       details.setPicturePath((String) one.get("picture_path"));
       details.setRealName((String) one.get("real_name"));
-      details.setAge((int) one.get("age"));
+      // ageがnullの場合、0を格納
+      Integer age = (Integer) one.get("age");
+      if (age != null) {
+        details.setAge(age);
+      } else {
+        details.setAge(0);
+      }
       details.setAgeNote((String) one.get("age_note"));
       details.setGender((String) one.get("gender"));
       details.setAbilities((String) one.get("abilities"));

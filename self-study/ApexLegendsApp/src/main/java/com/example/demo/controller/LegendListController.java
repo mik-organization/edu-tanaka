@@ -14,35 +14,28 @@ import com.example.demo.service.LegendListService;
 
 import lombok.RequiredArgsConstructor;
 
+/** レジェンドリストの表示・検索処理を行うコントローラー */
 @Controller
 @RequiredArgsConstructor
 public class LegendListController {
-	
-	private final LegendListService service;
 
-	/*--最初のリクエスト-------------*/
-	@GetMapping("/top")
-	public String legendList(
-			@ModelAttribute LegendSearchForm form) {
-			
-		return "legend-list";
-	}
-	
-	/*--検索リクエスト-------------*/
-	@PostMapping("legend-search")
-	public String ledendSearch( 
-			@ModelAttribute LegendSearchForm form,
-			Model model) {
-	
-		List<Legend>list
-			=service.findByNamecard(form.getName());
-		
-		model.addAttribute("legendList",list);
-		
-		return "legend-list";
-	}
-	
-	
-	
+  private final LegendListService service;
+
+  /*--最初のリクエスト-------------*/
+  @GetMapping("/top")
+  public String legendList(@ModelAttribute LegendSearchForm form) {
+
+    return "legend-list";
+  }
+
+  /*--レジェンド名による検索を行う-------------*/
+  @PostMapping("legend-search")
+  public String ledendSearch(@ModelAttribute LegendSearchForm form, Model model) {
+
+    List<Legend> list = service.findByNamecard(form.getName());
+
+    model.addAttribute("legendList", list);
+
+    return "legend-list";
+  }
 }
-

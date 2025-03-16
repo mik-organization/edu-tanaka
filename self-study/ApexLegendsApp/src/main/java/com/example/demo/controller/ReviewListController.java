@@ -13,30 +13,23 @@ import com.example.demo.service.ReviewListService;
 
 import lombok.RequiredArgsConstructor;
 
+/** レビューリストの表示・検索を行うコントローラー */
 @Controller
 @RequiredArgsConstructor
 public class ReviewListController {
-	
-	private final ReviewListService service;
-	
-	/*---検索リクエスト-----------------*/
-	@PostMapping("/search-review")
-	private String searchReview(
-			@ModelAttribute ReviewSearchForm form,
-			Model model) {
-		
-		List<Review> list 
-			= service.findByLegendId(form.getId());	
-		
-		if (list.size() > 0 ) {
-			model.addAttribute("reviewList", list);
-		}
-		
-		return "review-list";
-		
 
-	}
-	
-	
+  private final ReviewListService service;
 
+  /*---レジェンド名によるレビュー検索-----------------*/
+  @PostMapping("/search-review")
+  private String searchReview(@ModelAttribute ReviewSearchForm form, Model model) {
+
+    List<Review> list = service.findByLegendId(form.getId());
+
+    if (list.size() > 0) {
+      model.addAttribute("reviewList", list);
+    }
+
+    return "review-list";
+  }
 }

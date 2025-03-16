@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class ReviewRegistForm {
 
-  private Integer legendId;
+  private Integer id;
 
   private String name;
 

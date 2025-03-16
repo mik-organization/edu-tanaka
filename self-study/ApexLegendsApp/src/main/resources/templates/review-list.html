@@ -10,7 +10,7 @@
 	<h2>レビュー一覧</h2>
 	
 	<div th:object="${reviewSearchForm}">
-		【店舗】<br>
+		【レジェンド名】<br>
 		<p th:text="*{id} + ' '
 						 + *{name}"></p>
 	</div>
@@ -29,7 +29,7 @@
 				<td>
 					<form th:action="@{/show-edit-form}" method="POST">
 						<input type="hidden" name="id" th:value="${review.id}">
-						<input type="hidden" name="legendId" th:value="${review.legendId}">
+						<input type="hidden" name="legendId" th:value="${reviewSearchForm.id}">
 						<input type="hidden" name="name" th:value="${reviewSearchForm.name}">
 						<input type="hidden" name="userName" th:value="${review.userName}">
 						<input type="hidden" name="age" th:value="${review.age}">
@@ -42,7 +42,7 @@
 				<td>
 					<form th:action="@{/remove-review}" method="POST">
 						<input type="hidden" name="id" th:value="${review.id}">
-						<input type="hidden" name="legendId" th:value="${review.legendId}">
+						<input type="hidden" name="legendId" th:value="${reviewSearchForm.id}">
 						<input type="hidden" name="name" th:value="${reviewSearchForm.name}">
 						<input type="hidden" name="userName" th:value="${review.userName}">
 						<input type="hidden" name="age" th:value="${review.age}">
@@ -52,7 +52,7 @@
 						<input type="submit" value="削除" class="tbtn">
 					</form>
 				</td>
-				<td th:text="${review.Id}"></td>
+				<td th:text="${review.id}"></td>
 				<td th:text="${review.userName}"></td>
 				<td th:text="${review.age}"></td>
 				<td th:text="${review.playDate}"></td>

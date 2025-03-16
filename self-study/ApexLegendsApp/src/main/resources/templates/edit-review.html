@@ -53,7 +53,7 @@
 		<input type="submit" value="更新" class="btn">						
 	</form>
 	
-	<form th:action="@{/search-review}" method="POST" th:object="${reviewEditForm}">
+    <form th:action="@{/search-review}" method="POST" th:object="${reviewEditForm}">
 		<input type="hidden" th:field="*{legendId}">
 		<input type="hidden" th:field="*{name}">
 		<input type="submit" value="もどる" class="btn">
