@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Legend {
 
-  private int id;
+  private int legendId;
   private String name;
   private String legendClass;
   private double averageRating;

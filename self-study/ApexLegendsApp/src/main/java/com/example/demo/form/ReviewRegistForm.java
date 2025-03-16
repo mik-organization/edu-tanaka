@@ -14,10 +14,11 @@ import lombok.Data;
 @Data
 public class ReviewRegistForm {
 
-  private Integer id;
+  private int legendId;
 
   private String name;
 
+  @NotNull(message = "入力してください。")
   @Size(max = 10, message = "10文字以内で入力してください。")
   private String userName;
 

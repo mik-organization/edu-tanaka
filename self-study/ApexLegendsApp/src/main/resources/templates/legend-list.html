@@ -26,23 +26,23 @@
 			<tr th:each="legend : ${legendList}">
 				<td>
 					<form th:action="@{/search-review}" method="POST">
-						<input type="hidden" name="id" th:value="${legend.id}">
+						<input type="hidden" name="legendId" th:value="${legend.legendId}">
 						<input type="hidden" name="name" th:value="${legend.name}">
 						<input type="submit" value="一覧" class="tbtn"> 
 					</form>
 				</td>
 				<td>
 					<form th:action="@{/show-review-form}" method="POST">
-						<input type="hidden" name="id" th:value="${legend.id}">
+						<input type="hidden" name="legendId" th:value="${legend.legendId}">
 						<input type="hidden" name="name" th:value="${legend.name}">
 						<input type="submit" value="登録" class="tbtn"> 
 					</form>
 				</td>
-				<td th:text="${legend.id}"></td>
+				<td th:text="${legend.legendId}"></td>
 				<td th:text="${legend.name}"></td>
 				<td>
 					<form th:action="@{/legend-details}" method="POST">
-						<input type="hidden" name="id" th:value="${legend.id}">
+						<input type="hidden" name="legendId" th:value="${legend.legendId}">
 						<input type="hidden" name="name" th:value="${legend.name}">
 						<input type="submit" value="詳細" class="tbtn"> 
 					</form>

@@ -23,6 +23,7 @@ public class RegistController {
   /*--レビュー登録画面表示リクエスト---*/
   @PostMapping("/show-review-form")
   public String showReviewForm(@ModelAttribute ReviewRegistForm form) {
+	    System.out.println(form.getLegendId()); 
 
     return "regist-review";
   }
@@ -59,12 +60,14 @@ public class RegistController {
     }
 
     Review r = new Review();
-    r.setLegendId(form.getId());
+    r.setLegendId(form.getLegendId());
     r.setUserName(form.getUserName());
     r.setAge(form.getAge());
     r.setPlayDate(form.getPlayDate());
     r.setRating(form.getRating());
     r.setComment(form.getComment());
+    
+
     service.regist(r);
 
     redirectAttributes.addFlashAttribute("msg", "（レビュー登録）");

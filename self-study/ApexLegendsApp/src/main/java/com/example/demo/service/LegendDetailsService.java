@@ -13,5 +13,5 @@ public interface LegendDetailsService {
    * @param id
    * @return 詳細リスト
    */
-  List<Details> findById(int id);
+  List<Details> findByLegendId(int legendId);
 }

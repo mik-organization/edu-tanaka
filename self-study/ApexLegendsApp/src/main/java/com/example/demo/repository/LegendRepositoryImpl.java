@@ -49,7 +49,7 @@ public class LegendRepositoryImpl implements LegendRepository {
     List<Legend> result = new ArrayList<Legend>(); // 結果の初期化
     for (Map<String, Object> one : list) {
       Legend legend = new Legend();
-      legend.setId((int) one.get("id"));
+      legend.setLegendId((int) one.get("id"));
       legend.setName((String) one.get("name"));
       legend.setLegendClass((String) one.get("legend_class"));
       double d = ((BigDecimal) one.get("average_rating")).doubleValue();

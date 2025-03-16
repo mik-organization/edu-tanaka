@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class Review {
 
-  private Integer id;
-  private Integer legendId;
+  private int id;
+  private int legendId;
   private String userName;
   private Integer age;
   private Date playDate;

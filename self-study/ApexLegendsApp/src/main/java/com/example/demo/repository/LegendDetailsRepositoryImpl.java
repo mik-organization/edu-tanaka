@@ -19,7 +19,7 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
   private final JdbcTemplate jdbcTemplate;
 
   @Override
-  public List<Details> selectById(int id) {
+  public List<Details> selectByLegendId(int legendId) {
 
     String sql =
         "SELECT                                "
@@ -28,7 +28,7 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
             + "  words,                              "
             + "  picture_path,                       "
             + "  real_name,                          "
-            + " age,                                       "
+            + "  age,                                       "
             + "  age_note,  "
             + "  gender,                             "
             + "  abilities,                          "
@@ -42,20 +42,20 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
             + "  m_legend                            "
             + "WHERE                                 "
             + "  id = ?                              ";
-    
+
     // SQLで検索
-    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, id);
+    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, legendId);
 
     // 値の取得⇒結果の格納
     List<Details> result = new ArrayList<Details>();
     for (Map<String, Object> one : list) {
       Details details = new Details();
-      details.setId((int) one.get("id"));
+      details.setLegendId((int) one.get("id"));
       details.setName((String) one.get("name"));
       details.setWords((String) one.get("words"));
       details.setPicturePath((String) one.get("picture_path"));
       details.setRealName((String) one.get("real_name"));
-       details.setAge((Integer)one.get("age"));
+      details.setAge((Integer) one.get("age"));
       details.setAgeNote((String) one.get("age_note"));
       details.setGender((String) one.get("gender"));
       details.setAbilities((String) one.get("abilities"));

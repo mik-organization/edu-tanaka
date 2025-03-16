@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Details {
 
-  private int id;
+  private int legendId;
   private String name;
   private String words;
   private String picturePath;

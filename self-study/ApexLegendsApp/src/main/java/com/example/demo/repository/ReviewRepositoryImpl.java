@@ -66,9 +66,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
       review.setId((int) one.get("id"));
       review.setLegendId((int) one.get("legend_id"));
       review.setUserName((String) one.get("user_name"));
-      review.setAge((int) one.get("age"));
+      review.setAge((Integer) one.get("age"));
       review.setPlayDate((Date) one.get("play_date"));
-      review.setRating((int) one.get("rating"));
+      review.setRating((Integer) one.get("rating"));
       review.setComment((String) one.get("comment"));
       result.add(review);
     }

@@ -24,10 +24,10 @@ public class LegendDetailsServiceImpl implements LegendDetailsService {
 	 *
 	 */
 	@Override
-	public List<Details> findById(int id) {
+	public List<Details> findByLegendId(int legendId) {
 	
 		List<Details> list
-			=repository.selectById(id);
+			=repository.selectByLegendId(legendId);
 		
 		return list;
 	}

@@ -24,7 +24,7 @@ public class ReviewListController {
   @PostMapping("/search-review")
   private String searchReview(@ModelAttribute ReviewSearchForm form, Model model) {
 
-    List<Review> list = service.findByLegendId(form.getId());
+    List<Review> list = service.findByLegendId(form.getLegendId());
 
     if (list.size() > 0) {
       model.addAttribute("reviewList", list);

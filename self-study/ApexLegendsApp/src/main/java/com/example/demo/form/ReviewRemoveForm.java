@@ -14,9 +14,9 @@ import lombok.Data;
 @Data
 public class ReviewRemoveForm {
 
-  private Integer id;
+  private int id;
 
-  private Integer legendId;
+  private int legendId;
 
   private String name;
 
