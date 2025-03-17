@@ -20,7 +20,7 @@ public class LegendDetailsServiceImpl implements LegendDetailsService {
    * repositoryクラスへのアクセス
    *
    * @param legendId
-   * @return repositoryクラスから渡されたリスト
+   * @return repositoryクラスから返されたリスト
    */
   @Override
   public List<Details> findByLegendId(int legendId) {

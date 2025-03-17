@@ -7,5 +7,6 @@ import lombok.Data;
 public class ReviewSearchForm {
 
   private int legendId;
+
   private String name;
 }

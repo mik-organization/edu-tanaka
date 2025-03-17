@@ -20,7 +20,7 @@ public class ReviewListServiceImpl implements ReviewListService {
    * repositoryクラスへのアクセス
    *
    * @param legendId
-   * @return repositoryクラスから渡されたリスト *
+   * @return repositoryクラスから返されたリスト *
    */
   @Override
   public List<Review> findByLegendId(int legendId) {

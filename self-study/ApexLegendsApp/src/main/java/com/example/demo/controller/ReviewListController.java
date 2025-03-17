@@ -21,7 +21,7 @@ public class ReviewListController {
   private final ReviewListService service;
 
   /**
-   * レジェンドIDによるレビュー検索
+   * 検索したレビューリストの画面表示リクエスト
    *
    * @param form
    * @param model

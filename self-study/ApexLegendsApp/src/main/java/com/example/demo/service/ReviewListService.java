@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.demo.entity.Review;
 
-/** レビュー表示用のserviceインタフェース */
+/** レビューリスト表示用のserviceインタフェース */
 public interface ReviewListService {
 
   /**

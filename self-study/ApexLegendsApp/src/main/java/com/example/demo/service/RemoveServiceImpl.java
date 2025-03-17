@@ -7,24 +7,21 @@ import com.example.demo.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * レビュー削除用のserviceクラス
- */
+/** レビュー削除用のserviceクラス */
 @Service
 @RequiredArgsConstructor
 public class RemoveServiceImpl implements RemoveService {
-	
-	private final ReviewRepository repository;
 
-	/**
-	 *repositoryクラスへのアクセス
-	 *@param review
-	 */
-	@Override
-	public void remove(Review review) {
-		
-		repository.delete(review);
+  private final ReviewRepository repository;
 
-	}
+  /**
+   * repositoryクラスへのアクセス
+   *
+   * @param review
+   */
+  @Override
+  public void remove(Review review) {
 
+    repository.delete(review);
+  }
 }

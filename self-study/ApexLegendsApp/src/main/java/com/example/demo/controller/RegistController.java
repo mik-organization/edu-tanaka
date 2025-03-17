@@ -63,8 +63,6 @@ public class RegistController {
     return "confirm-regist-review";
   }
 
-  /*--レビュー登録画面リクエスト（登録画面より）---*/
-
   /**
    * 登録実行リクエスト
    *
