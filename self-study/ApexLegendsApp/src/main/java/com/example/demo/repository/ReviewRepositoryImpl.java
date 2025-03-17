@@ -12,12 +12,18 @@ import com.example.demo.entity.Review;
 
 import lombok.RequiredArgsConstructor;
 
+/** レビュー処理に関するrepositoryクラス */
 @Repository
 @RequiredArgsConstructor
 public class ReviewRepositoryImpl implements ReviewRepository {
 
   private final JdbcTemplate jdbcTemplate;
 
+  /**
+   * DBにレビューを登録
+   *
+   * @param review
+   */
   @Override
   public void add(Review review) {
 
@@ -36,6 +42,12 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         review.getComment());
   }
 
+  /**
+   * DBからレビューを検索
+   *
+   * @param legendId
+   * @return reviewへ格納したリストの結果
+   */
   @Override
   public List<Review> selectByLegendId(int legendId) {
 
@@ -56,11 +68,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             + "	play_date DESC,                     "
             + "	id ASC                              ";
 
-    // SQLで検索（プレースホルダ：引数で受け取ってlegendId）
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, legendId);
 
-    // 値の取得⇒結果の格納
-    List<Review> result = new ArrayList<Review>(); // 結果の初期化
+    List<Review> result = new ArrayList<Review>();
     for (Map<String, Object> one : list) {
       Review review = new Review();
       review.setId((int) one.get("id"));
@@ -76,6 +86,11 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     return result;
   }
 
+  /**
+   * DB内のレビュー更新
+   *
+   * @param review
+   */
   @Override
   public void update(Review review) {
 
@@ -101,6 +116,11 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         review.getId());
   }
 
+  /**
+   * DBからレビューを削除
+   *
+   * @param review
+   */
   @Override
   public void delete(Review review) {
 

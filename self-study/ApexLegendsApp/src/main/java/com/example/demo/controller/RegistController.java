@@ -13,29 +13,45 @@ import com.example.demo.service.RegistService;
 
 import lombok.RequiredArgsConstructor;
 
-/** レビュー登録を行うコントローラー */
+/** レビューの登録を行うコントローラー */
 @Controller
 @RequiredArgsConstructor
 public class RegistController {
 
   public final RegistService service;
 
-  /*--レビュー登録画面表示リクエスト---*/
+  /**
+   * 登録画面表示リクエスト
+   *
+   * @param form
+   * @return 登録画面
+   */
   @PostMapping("/show-review-form")
   public String showReviewForm(@ModelAttribute ReviewRegistForm form) {
-	    System.out.println(form.getLegendId()); 
+    System.out.println(form.getLegendId());
 
     return "regist-review";
   }
 
-  /*--レビュー登録確認画面表示リクエスト（確認画面からの戻り）---*/
+  /**
+   * 登録画面表示リクエスト（確認画面からの戻り）
+   *
+   * @param form
+   * @return 登録画面
+   */
   @PostMapping("/show-review-form-ret")
   public String showRrviewFormRet(@ModelAttribute ReviewRegistForm form) {
 
     return "regist-review";
   }
 
-  /*--レビュー登録確認画面表示リクエスト（確認画面）---*/
+  /**
+   * 登録確認画面表示リクエスト
+   *
+   * @param form
+   * @param result validation結果
+   * @return 登録画面または登録確認画面
+   */
   @PostMapping("/regist-review")
   public String registReview(
       @Validated @ModelAttribute ReviewRegistForm form, BindingResult result) {
@@ -48,6 +64,15 @@ public class RegistController {
   }
 
   /*--レビュー登録画面リクエスト（登録画面より）---*/
+
+  /**
+   * 登録実行リクエスト
+   *
+   * @param form
+   * @param result validation結果
+   * @param redirectAttributes
+   * @return 登録画面または完了画面
+   */
   @PostMapping("/confirm-regist-review")
   public String confirmRegistReview(
       @Validated ReviewRegistForm form,
@@ -55,7 +80,6 @@ public class RegistController {
       RedirectAttributes redirectAttributes) {
 
     if (result.hasErrors()) {
-
       return "regist-review";
     }
 
@@ -66,7 +90,6 @@ public class RegistController {
     r.setPlayDate(form.getPlayDate());
     r.setRating(form.getRating());
     r.setComment(form.getComment());
-    
 
     service.regist(r);
 

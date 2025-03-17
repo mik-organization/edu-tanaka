@@ -19,11 +19,12 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
   private final JdbcTemplate jdbcTemplate;
 
   /**
- * レジェンド詳細のDB検索
- * @param legendId
- * @return 結果
- */
-@Override
+   * DBからレジェンド詳細を検索
+   *
+   * @param legendId
+   * @return detailsへ格納したリストの結果
+   */
+  @Override
   public List<Details> selectByLegendId(int legendId) {
 
     String sql =
@@ -48,10 +49,8 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
             + "WHERE                                 "
             + "  id = ?                              ";
 
-    // SQLで検索
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, legendId);
 
-    // 値の取得⇒結果の格納
     List<Details> result = new ArrayList<Details>();
     for (Map<String, Object> one : list) {
       Details details = new Details();

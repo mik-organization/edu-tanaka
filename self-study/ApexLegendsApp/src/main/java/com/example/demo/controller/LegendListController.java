@@ -21,14 +21,25 @@ public class LegendListController {
 
   private final LegendListService service;
 
-  /*--最初のリクエスト-------------*/
+  /**
+   * トップ画面表示リクエスト
+   *
+   * @param form
+   * @return 検索画面
+   */
   @GetMapping("/top")
   public String legendList(@ModelAttribute LegendSearchForm form) {
 
     return "legend-list";
   }
 
-  /*--レジェンド名による検索を行う-------------*/
+  /**
+   * 検索したレジェンドのデータを取得しリスト化
+   *
+   * @param form
+   * @param model
+   * @return レジェンド一覧表示画面
+   */
   @PostMapping("legend-search")
   public String ledendSearch(@ModelAttribute LegendSearchForm form, Model model) {
 

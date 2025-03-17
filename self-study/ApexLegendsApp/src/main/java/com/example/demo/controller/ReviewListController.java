@@ -20,7 +20,13 @@ public class ReviewListController {
 
   private final ReviewListService service;
 
-  /*---レジェンド名によるレビュー検索-----------------*/
+  /**
+   * レジェンドIDによるレビュー検索
+   *
+   * @param form
+   * @param model
+   * @return レビュー一覧画面
+   */
   @PostMapping("/search-review")
   private String searchReview(@ModelAttribute ReviewSearchForm form, Model model) {
 

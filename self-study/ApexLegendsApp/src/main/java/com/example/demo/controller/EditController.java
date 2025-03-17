@@ -13,21 +13,32 @@ import com.example.demo.service.EditService;
 
 import lombok.RequiredArgsConstructor;
 
-/** 指定したレビューの編集処理を行うコントローラー */
+/** 指定したレビューの編集を行うコントローラー */
 @Controller
 @RequiredArgsConstructor
 public class EditController {
 
   public final EditService service;
 
-  /*--レビュー編集画面表示リクエスト---*/
+  /**
+   * 編集画面表示リクエスト
+   *
+   * @param form
+   * @return 編集画面
+   */
   @PostMapping("/show-edit-form")
   public String showReviewForm(@ModelAttribute ReviewEditForm form) {
 
     return "edit-review";
   }
 
-  /*--レビュー更新リクエスト（登録画面）---*/
+  /**
+   * 編集確認画面リクエスト
+   *
+   * @param form
+   * @param result validation結果
+   * @return 編集画面または編集確認画面
+   */
   @PostMapping("/edit-review")
   public String registReview(@Validated @ModelAttribute ReviewEditForm form, BindingResult result) {
 
@@ -38,13 +49,19 @@ public class EditController {
     return "confirm-edit-review";
   }
 
-  /*--レビュー更新画面リクエスト（登録画面より）---*/
+  /**
+   * 編集実行リクエスト
+   *
+   * @param form
+   * @param result validation結果
+   * @param redirectAttributes
+   * @return 編集画面または完了画面
+   */
   @PostMapping("/confirm-edit-review")
   public String confirmEditReview(
       @Validated ReviewEditForm form, BindingResult result, RedirectAttributes redirectAttributes) {
 
     if (result.hasErrors()) {
-
       return "edit-review";
     }
 

@@ -21,18 +21,16 @@ public class LegendDetailsController {
   private final LegendDetailsService service;
 
   /**
-   * 指定したレジェンドの詳細データを取得
+   * 指定したレジェンドの詳細データを取得しリスト化
    *
    * @param form
    * @param model
-   * @return
+   * @return レジェンド詳細画面
    */
   @PostMapping("/legend-details")
   private String legendDetails(@ModelAttribute ReviewSearchForm form, Model model) {
 
-    List<Details> list = service.findByLegendId(form.getLegendId()); 
-    
-    System.out.println(list); 
+    List<Details> list = service.findByLegendId(form.getLegendId());
 
     if (list.size() > 0) {
       model.addAttribute("legendDetails", list);

@@ -12,12 +12,19 @@ import com.example.demo.entity.Legend;
 
 import lombok.RequiredArgsConstructor;
 
+/** レジェンド検索用のrepositoryクラス */
 @Repository
 @RequiredArgsConstructor
 public class LegendRepositoryImpl implements LegendRepository {
 
   private final JdbcTemplate jdbcTemplate;
 
+  /**
+   * DBからレジェンドを検索
+   *
+   * @param name
+   * @return legendへ格納したリストの結果
+   */
   @Override
   public List<Legend> selectByNameWildcard(String name) {
 
@@ -31,7 +38,7 @@ public class LegendRepositoryImpl implements LegendRepository {
             + "	m_legend ml                                   "
             + "	LEFT OUTER JOIN t_review tr                   "
             + " 				 ON ml.id = tr.legend_id      "
-            + "WHERE                                          "
+            + "WHERE                                         "
             + "	ml.name LIKE ?                                "
             + "GROUP BY                                       "
             + "	ml.id,                                        "
@@ -40,13 +47,11 @@ public class LegendRepositoryImpl implements LegendRepository {
             + "ORDER BY                                       "
             + "	ml.sort_index                                         ";
 
-    String p = "%" + name + "%"; // プレースホルダの値
+    String p = "%" + name + "%";
 
-    // SQLで検索（プレースホルダ：p）
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, p);
 
-    // 値の取得⇒結果の格納
-    List<Legend> result = new ArrayList<Legend>(); // 結果の初期化
+    List<Legend> result = new ArrayList<Legend>();
     for (Map<String, Object> one : list) {
       Legend legend = new Legend();
       legend.setLegendId((int) one.get("id"));
