@@ -33,7 +33,7 @@ public class EditController {
   }
 
   /**
-   * 編集確認画面リクエスト
+   * 編集確認画面表示リクエスト
    *
    * @param form
    * @param result validation結果

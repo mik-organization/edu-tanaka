@@ -21,7 +21,7 @@ public class LegendDetailsController {
   private final LegendDetailsService service;
 
   /**
-   * 指定したレジェンドの詳細データを取得しリスト化
+   * レジェンド詳細画面表示リクエスト
    *
    * @param form
    * @param model

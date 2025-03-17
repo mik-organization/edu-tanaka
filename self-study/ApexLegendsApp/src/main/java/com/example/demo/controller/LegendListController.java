@@ -34,7 +34,7 @@ public class LegendListController {
   }
 
   /**
-   * 検索したレジェンドのデータを取得しリスト化
+   * 検索したレジェンドリストの画面表示リクエスト
    *
    * @param form
    * @param model
