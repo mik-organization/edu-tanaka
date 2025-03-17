@@ -42,7 +42,7 @@ spring.datasource.username=apex_user
 spring.datasource.password=apex  
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver  
 
-# spring bootプロジェクトのフォルダ構造
+# プロジェクトのフォルダ構造
 * src/main/java/com/example/demo
   * controller
     * MVCのコントローラクラスを配置
