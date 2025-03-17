@@ -2,7 +2,7 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import com.example.demo.entity.Legend;
+import com.example.demo.model.view.Legend;
 
 /** レジェンド検索用のrepositoryインタフェース */
 public interface LegendRepository {

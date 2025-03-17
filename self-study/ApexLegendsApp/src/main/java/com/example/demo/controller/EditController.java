@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.entity.Review;
 import com.example.demo.form.ReviewEditForm;
+import com.example.demo.model.view.Review;
 import com.example.demo.service.EditService;
 
 import lombok.RequiredArgsConstructor;

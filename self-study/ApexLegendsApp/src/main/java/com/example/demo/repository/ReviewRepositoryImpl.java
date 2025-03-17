@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
 import lombok.RequiredArgsConstructor;
 

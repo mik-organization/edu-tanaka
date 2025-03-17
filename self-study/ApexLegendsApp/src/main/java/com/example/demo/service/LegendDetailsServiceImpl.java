@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Details;
+import com.example.demo.model.view.Details;
 import com.example.demo.repository.LegendDetailsRepository;
 
 import lombok.RequiredArgsConstructor;

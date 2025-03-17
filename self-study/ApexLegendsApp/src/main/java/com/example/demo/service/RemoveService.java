@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
 /** レビュー削除用のserviceインタフェース */
 public interface RemoveService {

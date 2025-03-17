@@ -2,7 +2,7 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
 /** レビュー処理に関するrepositoryインタフェース */
 public interface ReviewRepository {

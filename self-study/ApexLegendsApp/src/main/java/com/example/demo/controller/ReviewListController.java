@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entity.Review;
 import com.example.demo.form.ReviewSearchForm;
+import com.example.demo.model.view.Review;
 import com.example.demo.service.ReviewListService;
 
 import lombok.RequiredArgsConstructor;

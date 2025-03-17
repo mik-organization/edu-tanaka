@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
 /** レビュー編集用のserviceインタフェース */
 public interface EditService {

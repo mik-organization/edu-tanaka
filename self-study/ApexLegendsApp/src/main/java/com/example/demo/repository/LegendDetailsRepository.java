@@ -2,7 +2,7 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import com.example.demo.entity.Details;
+import com.example.demo.model.view.Details;
 
 /** レジェンド詳細表示用のrepositoryインタフェース */
 public interface LegendDetailsRepository {

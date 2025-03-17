@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 import com.example.demo.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;

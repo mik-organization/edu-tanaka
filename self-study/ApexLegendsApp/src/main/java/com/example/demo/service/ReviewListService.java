@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
 /** レビューリスト表示用のserviceインタフェース */
 public interface ReviewListService {

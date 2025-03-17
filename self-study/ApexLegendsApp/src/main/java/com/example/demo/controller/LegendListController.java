@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entity.Legend;
 import com.example.demo.form.LegendSearchForm;
+import com.example.demo.model.view.Legend;
 import com.example.demo.service.LegendListService;
 
 import lombok.RequiredArgsConstructor;

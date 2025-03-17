@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Legend;
 import com.example.demo.form.LegendSearchForm;
+import com.example.demo.model.view.Legend;
 import com.example.demo.service.LegendListService;
 
 import lombok.RequiredArgsConstructor;
