@@ -51,24 +51,24 @@ public class ReviewRepositoryImpl implements ReviewRepository {
   @Override
   public List<Review> selectByLegendId(int legendId) {
 
-    String sql =
-        "SELECT                                 "
-            + "	id,                                 "
-            + "	legend_id,                          "
-            + "	user_name,                          "
-            + "	age,                                "
-            + "	play_date,                          "
-            + "	rating,                             "
-            + "	comment                             "
-            + "FROM                                   "
-            + "	t_review                            "
-            + "WHERE                                  "
-            + "	legend_id = ?                       "
-            + "ORDER BY                               "
-            + "	play_date DESC,                     "
-            + "	id ASC                              ";
+    StringBuilder sql = new StringBuilder();
+    sql.append("SELECT ");
+    sql.append(" id, ");
+    sql.append(" legend_id, ");
+    sql.append(" user_name, ");
+    sql.append(" age, ");
+    sql.append(" play_date, ");
+    sql.append(" rating, ");
+    sql.append(" comment ");
+    sql.append("FROM ");
+    sql.append(" t_review ");
+    sql.append("WHERE ");
+    sql.append(" legend_id = ? ");
+    sql.append("ORDER BY ");
+    sql.append(" play_date DESC, ");
+    sql.append(" id ASC ");
 
-    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, legendId);
+    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql.toString(), legendId);
 
     List<Review> result = new ArrayList<Review>();
     for (Map<String, Object> one : list) {
@@ -94,20 +94,20 @@ public class ReviewRepositoryImpl implements ReviewRepository {
   @Override
   public void update(Review review) {
 
-    String sql =
-        "UPDATE               "
-            + "	t_review          "
-            + "SET                  "
-            + "	user_name = ?,    "
-            + "	age	= ?,          "
-            + "	play_date = ?,    "
-            + "	rating = ?,       "
-            + "   comment = ?       "
-            + "WHERE                "
-            + "	id = ?            ";
+    StringBuilder sql = new StringBuilder();
+    sql.append("UPDATE ");
+    sql.append(" t_review ");
+    sql.append("SET ");
+    sql.append(" user_name = ?, ");
+    sql.append(" age = ?, ");
+    sql.append(" play_date = ?, ");
+    sql.append(" rating = ?, ");
+    sql.append(" comment = ? ");
+    sql.append("WHERE ");
+    sql.append(" id = ?");
 
     jdbcTemplate.update(
-        sql,
+        sql.toString(),
         review.getUserName(),
         review.getAge(),
         review.getPlayDate(),

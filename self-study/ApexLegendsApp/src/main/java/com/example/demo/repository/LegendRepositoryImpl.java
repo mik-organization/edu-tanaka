@@ -28,28 +28,28 @@ public class LegendRepositoryImpl implements LegendRepository {
   @Override
   public List<Legend> selectByNameWildcard(String name) {
 
-    String sql =
-        "SELECT                                               "
-            + "	ml.id,                                        "
-            + "	ml.name,                                      "
-            + "	ml.legend_class,                              "
-            + "	COALESCE(AVG(tr.rating), 0.0 ) average_rating "
-            + "FROM                                           "
-            + "	m_legend ml                                   "
-            + "	LEFT OUTER JOIN t_review tr                   "
-            + " 				 ON ml.id = tr.legend_id      "
-            + "WHERE                                         "
-            + "	ml.name LIKE ?                                "
-            + "GROUP BY                                       "
-            + "	ml.id,                                        "
-            + "	ml.name,                                      "
-            + "	ml.legend_class                               "
-            + "ORDER BY                                       "
-            + "	ml.sort_index                                         ";
+    StringBuilder sql = new StringBuilder();
+    sql.append("SELECT ");
+    sql.append(" ml.id, ");
+    sql.append(" ml.name, ");
+    sql.append(" ml.legend_class, ");
+    sql.append(" COALESCE(AVG(tr.rating), 0.0 ) average_rating ");
+    sql.append("FROM ");
+    sql.append(" m_legend ml ");
+    sql.append(" LEFT OUTER JOIN t_review tr ");
+    sql.append(" ON ml.id = tr.legend_id ");
+    sql.append("WHERE ");
+    sql.append(" ml.name LIKE ? ");
+    sql.append("GROUP BY ");
+    sql.append(" ml.id, ");
+    sql.append(" ml.name, ");
+    sql.append(" ml.legend_class ");
+    sql.append("ORDER BY ");
+    sql.append(" ml.sort_index ");
 
     String p = "%" + name + "%";
 
-    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, p);
+    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql.toString(), p);
 
     List<Legend> result = new ArrayList<Legend>();
     for (Map<String, Object> one : list) {
