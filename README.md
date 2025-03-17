@@ -42,6 +42,31 @@ spring.datasource.username=apex_user
 spring.datasource.password=apex  
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver  
 
+# spring bootプロジェクトのフォルダ構造
+* src/main/java/com/example/demo
+  * controller
+    * MVCのコントローラクラスを配置
+  * model
+    * view
+      * 画面表示用
+    * entity
+      * データモデル（エンティティ）クラスを配置
+      * データベースのテーブルと直接マッピングされるオブジェクト
+      * データベースの構造を表現
+    * dto
+      * レイヤー間（特にクライアントとサーバー間）でデータを転送するためのオブジェクト
+      * データベースの構造に依存しない
+  * repository
+    * データアクセス層（DAO）を配置
+  * service
+    * ビジネスロジックを含むサービスクラスを格納
+  * util
+    * ユーティリティクラスを配置
+  * exception
+    * 業務例外クラスを配置
+
+
+
 ## 特筆すべき仕様
 ### m_legendのage、age_noteについて
 - 年齢を設定する場合はageに年齢を設定する
