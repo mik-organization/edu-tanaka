@@ -32,9 +32,7 @@ public class LegendDetailsController {
 
     List<Details> list = service.findByLegendId(form.getLegendId());
 
-    if (list.size() > 0) {
-      model.addAttribute("legendDetails", list);
-    }
+    model.addAttribute("legendDetails", list);
 
     return "legend-details";
   }
