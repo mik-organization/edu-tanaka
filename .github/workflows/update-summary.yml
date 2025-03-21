@@ -26,7 +26,7 @@ jobs:
           pip install pandas
           
       - name: Update time tracking summary
-        run: python scripts/update_time_summary.py
+        run: python manHour/scripts/update_time_summary.py
         
       - name: Commit and push if changed
         run: |
