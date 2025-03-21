@@ -9,7 +9,7 @@ def log_time(task_id, hours, notes=""):
     today = datetime.now().strftime('%Y-%m-%d')
     
     # 保存先のディレクトリを確認
-    actual_dir = 'data/actual'
+    actual_dir = 'manHour/data/actual'
     if not os.path.exists(actual_dir):
         os.makedirs(actual_dir)
     
@@ -39,8 +39,8 @@ def log_time(task_id, hours, notes=""):
 
 def show_tasks():
     """登録されているタスク一覧を表示する関数"""
-    if os.path.exists('data/planned.csv'):
-        df = pd.read_csv('data/planned.csv')
+    if os.path.exists('manHour/data/planned.csv'):
+        df = pd.read_csv('manHour/data/planned.csv')
         print("\n登録されているタスク一覧:")
         for _, row in df.iterrows():
             print(f"{row['task_id']}: {row['task_name']} (担当: {row['assignee']})")
