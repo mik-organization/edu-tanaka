@@ -18,7 +18,7 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
   /**
    * DBからレジェンド詳細を検索
    *
-   * @param legendId
+   * @param legendId レジェンドID
    * @return 検索結果
    */
   @Override
