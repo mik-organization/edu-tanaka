@@ -86,7 +86,7 @@
     <script>
         async function loadData() {
             try {
-                const response = await fetch('manHour/data/summary.csv');
+                const response = await fetch('../manHour/data/summary.csv');
                 if (!response.ok) {
                     console.error('CSV読み込みエラー:', response.status, response.statusText);
                     return [];
