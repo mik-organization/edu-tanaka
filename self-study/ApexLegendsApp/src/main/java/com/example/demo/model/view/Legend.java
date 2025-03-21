@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** レジェンド一覧表示用のentityクラス */
+/** レジェンド一覧表示用のviewクラス */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

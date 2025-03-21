@@ -2,7 +2,7 @@ package com.example.demo.model.view;
 
 import lombok.Data;
 
-/** レジェンド詳細表示用のentityクラス */
+/** レジェンド詳細表示用のviewクラス */
 @Data
 public class Details {
 

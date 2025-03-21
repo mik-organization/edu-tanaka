@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import lombok.Data;
 
-/** レビュー一覧表示用のentityクラス */
+/** レビュー一覧表示用のviewクラス */
 @Data
 public class Review {
 
