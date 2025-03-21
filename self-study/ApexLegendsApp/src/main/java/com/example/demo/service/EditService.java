@@ -1,9 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
+/** レビュー編集用のserviceインタフェース */
 public interface EditService {
-	
-	void edit(Review review);
 
+  /**
+   * レビュー編集処理の型定義
+   *
+   * @param review
+   */
+  void edit(Review review);
 }

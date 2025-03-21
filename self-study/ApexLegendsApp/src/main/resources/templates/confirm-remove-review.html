@@ -12,11 +12,11 @@
 	<table class="confirm-table" th:object="${reviewRemoveForm}">
 		<tr>
 			<td class="guide">【ID】</td>
-			<td th:text="*{reviewId}"></td>
+			<td th:text="*{id}"></td>
 		</tr>
 		<tr>
 			<td class="guide">【レジェンド】</td>
-			<td th:text="*{regendsId} + ' ' + *{regendsName}"></td>
+			<td th:text="*{legendId} + ' ' + *{name}"></td>
 		</tr>
 		<tr>
 			<td class="guide">【利用者名】</td>
@@ -41,8 +41,8 @@
 	</table>
 		<br><br>
 		<form th:action="@{confirm-remove-review}" method="POST" th:object="${reviewRemoveForm}">
-			<input type="hidden" th:field="*{reviewId}">
-			<input type="hidden" th:field="*{regendsId}">
+			<input type="hidden" th:field="*{id}">
+			<input type="hidden" th:field="*{legendId}">
 			<input type="hidden" th:field="*{userName}">
 			<input type="hidden" th:field="*{age}">
 			<input type="hidden" th:field="*{playDate}">
@@ -53,8 +53,8 @@
 		<br><br>
 	
 		<form th:action="@{search-review}" method="POST" th:object="${reviewRemoveForm}">
-			<input type="hidden" th:field="*{regendsId}">
-			<input type="hidden" th:field="*{regendsName}">
+			<input type="hidden" th:field="*{legendId}">
+			<input type="hidden" th:field="*{name}">
 			<input type="submit" value="もどる" class="btn">
 		</form>
 </body>

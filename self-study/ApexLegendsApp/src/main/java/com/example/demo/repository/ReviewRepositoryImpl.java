@@ -1,121 +1,114 @@
 package com.example.demo.repository;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
 import lombok.RequiredArgsConstructor;
 
+/** レビュー処理に関するrepositoryクラス */
 @Repository
 @RequiredArgsConstructor
 public class ReviewRepositoryImpl implements ReviewRepository {
-	
-	private final JdbcTemplate jdbcTemplate;
 
-	@Override
-	public void add(Review review) {
-		
-		String sql =
-				"INSERT INTO t_review" +
-				"(regends_id, user_name, age, play_date, rating, comment)" +
-				"VALUES(?, ?, ?, ?, ?, ? )";
-		
-		jdbcTemplate.update(sql, review.getRegendsId(),
-								 review.getUserName(),
-								 review.getAge(),
-								 review.getPlayDate(),
-								 review.getRating(),
-								 review.getComment()      );		
+  private final JdbcTemplate jdbcTemplate;
 
-	}
+  /**
+   * DBにレビューを登録
+   *
+   * @param review
+   */
+  @Override
+  public void add(Review review) {
 
-	@Override
-	public List<Review> selectByRegendsId(int regendsId) {
-		
-		String sql =
-				"SELECT									" +
-				"	review_id,							" +
-				"	regends_id,							" +
-				"	user_name,							" +
-				"	age,								" +
-				"	play_date,							" +
-				"	rating,								" +
-				"	comment								" +
-				"FROM									" +
-				"	t_review							" +
-				"WHERE									" +
-				"	regends_id = ?						" +
-				"ORDER BY								" +
-				"	play_date DESC,						" +
-				"	review_id ASC						";
-		
-		
-		//SQLで検索（プレースホルダ：引数で受け取ってregendsId）
-		List<Map<String, Object>> list
-			=jdbcTemplate.queryForList(sql, regendsId);
-		
-		
-		//値の取得⇒結果の格納
-		List<Review> result = new ArrayList<Review>();		//結果の初期化
-		for (Map<String,Object> one : list) {
-			Review review = new Review();
-			review.setReviewId((int)one.get("review_id"));
-			review.setRegendsId((int)one.get("regends_id"));
-			review.setUserName((String)one.get("user_name"));
-			review.setAge((int)one.get("age"));
-			review.setPlayDate((Date)one.get("play_date"));
-			review.setRating((int)one.get("rating"));
-			review.setComment((String)one.get("comment"));
-			result.add(review);
-			
-		}
-				
-				
-		return result;
-	}
+    String sql =
+        "INSERT INTO t_review"
+            + "(legend_id, user_name, age, play_date, rating, comment)"
+            + "VALUES(?, ?, ?, ?, ?, ? )";
 
-	@Override
-	public void update(Review review) {
-		
-		String sql =
-				"UPDATE               " +
-				"	t_review		  " +
-				"SET				  " +
-				"	user_name = ?,	  " +
-				"	age	= ?,		  " +
-				"	play_date = ?,    " +
-				"	rating = ?,		  " +
-				"   comment = ?       " +
-				"WHERE				  " +
-				"	review_id = ?	  "; 
-		
-		jdbcTemplate.update(sql,
-				review.getUserName(),
-				review.getAge(),
-				review.getPlayDate(),
-				review.getRating(),
-				review.getComment(),
-				review.getReviewId()	);
-	}
+    jdbcTemplate.update(
+        sql,
+        review.getLegendId(),
+        review.getUserName(),
+        review.getAge(),
+        review.getPlayDate(),
+        review.getRating(),
+        review.getComment());
+  }
 
-	@Override
-	public void delete(Review review) {
-		
-		String sql =
-				"DELETE				" +
-				"FROM				" +
-				"	t_review		" +
-				"WHERE				" +
-				"	review_id = ?	";
-		
-		jdbcTemplate.update(sql, review.getReviewId());
-		
-	}
+  /**
+   * DBからレビューを検索
+   *
+   * @param legendId
+   * @return 検索結果
+   */
+  @Override
+  public List<Map<String, Object>> selectByLegendId(int legendId) {
 
+    StringBuilder sql = new StringBuilder();
+    sql.append("SELECT ");
+    sql.append("  id, ");
+    sql.append("  legend_id, ");
+    sql.append("  user_name, ");
+    sql.append("  age, ");
+    sql.append("  play_date, ");
+    sql.append("  rating, ");
+    sql.append("  comment ");
+    sql.append("FROM ");
+    sql.append("  t_review ");
+    sql.append("WHERE ");
+    sql.append("  legend_id = ? ");
+    sql.append("ORDER BY ");
+    sql.append("  play_date DESC, ");
+    sql.append("  id ASC ");
+
+    return jdbcTemplate.queryForList(sql.toString(), legendId);
+  }
+
+  /**
+   * DB内のレビュー更新
+   *
+   * @param review
+   */
+  @Override
+  public void update(Review review) {
+
+    StringBuilder sql = new StringBuilder();
+    sql.append("UPDATE ");
+    sql.append("  t_review ");
+    sql.append("SET ");
+    sql.append("  user_name = ?, ");
+    sql.append("  age = ?, ");
+    sql.append("  play_date = ?, ");
+    sql.append("  rating = ?, ");
+    sql.append("  comment = ? ");
+    sql.append("WHERE ");
+    sql.append("  id = ?");
+
+    jdbcTemplate.update(
+        sql.toString(),
+        review.getUserName(),
+        review.getAge(),
+        review.getPlayDate(),
+        review.getRating(),
+        review.getComment(),
+        review.getId());
+  }
+
+  /**
+   * DBからレビューを削除
+   *
+   * @param review
+   */
+  @Override
+  public void delete(Review review) {
+
+    String sql = "DELETE	 FROM t_review WHERE	 id = ?	";
+
+    jdbcTemplate.update(sql, review.getId());
+  }
 }
