@@ -33,11 +33,11 @@ public class EditController {
   }
 
   /**
-   * 編集確認画面表示リクエスト
+   * レビュー編集画面またはレビュー編集確認画面を表示します。
    *
-   * @param form
-   * @param result validation結果
-   * @return 編集画面または編集確認画面
+   * @param form レビュー編集フォーム
+   * @param result バリデーション結果
+   * @return レビュー編集画面のテンプレート名またはレビュー編集確認画面のテンプレート名
    */
   @PostMapping("/edit-review")
   public String registReview(@Validated @ModelAttribute ReviewEditForm form, BindingResult result) {
@@ -50,12 +50,12 @@ public class EditController {
   }
 
   /**
-   * 編集実行リクエスト
+   * レビュー編集画面またはレビュー更新を実行しレビュー完了画面を表示します。
    *
-   * @param form
-   * @param result validation結果
-   * @param redirectAttributes
-   * @return 編集画面または完了画面
+   * @param form レビュー編集フォーム
+   * @param result バリデーション結果
+   * @param redirectAttributes リダイレクト属性
+   * @return レビュー編集画面のテンプレート名またはレビュー完了画面へのリダイレクトURL
    */
   @PostMapping("/confirm-edit-review")
   public String confirmEditReview(
