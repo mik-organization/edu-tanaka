@@ -85,7 +85,7 @@
 
     <script>
         async function loadData() {
-            const response = await fetch('data/summary.csv');
+            const response = await fetch('manHour/data/summary.csv');
             const csvData = await response.text();
             
             const parsed = Papa.parse(csvData, { header: true });
