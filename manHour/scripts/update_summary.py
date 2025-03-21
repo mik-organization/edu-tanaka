@@ -5,7 +5,7 @@ from datetime import datetime
 
 def update_time_summary():
     # パスを取得（スクリプトの場所を基準に）
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = os.path.dirname("docs/")
     planned_path = os.path.join(base_dir, 'data', 'planned.csv')
     actual_dir = os.path.join(base_dir, 'data', 'actual')
     summary_path = os.path.join(base_dir, 'data', 'summary.csv')
