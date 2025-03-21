@@ -1,6 +1,6 @@
 task_id,task_name,category,assignee,planned_hours,actual_hours,remaining_hours,progress_percent,status
-TASK-001,要件定義,分析,yamada,24,24,0,100%,完了
-TASK-002,DB設計,設計,tanaka,16,15.5,0.5,97%,進行中
-TASK-003,UI設計,設計,suzuki,20,18,2,90%,進行中
-TASK-004,バックエンド開発,実装,yamada,40,22,18,55%,進行中
-TASK-005,フロントエンド開発,実装,suzuki,32,11.5,20.5,36%,進行中
+TASK-001,要件定義,分析,yamada,24,5.0,19.0,20.8%,遅延
+TASK-002,DB設計,設計,tanaka,16,3.0,13.0,18.8%,遅延
+TASK-003,UI設計,設計,suzuki,20,0.0,20.0,0.0%,遅延
+TASK-004,バックエンド開発,実装,yamada,40,10.0,30.0,25.0%,遅延
+TASK-005,フロントエンド開発,実装,suzuki,32,3.0,29.0,9.4%,進行中

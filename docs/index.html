@@ -85,13 +85,25 @@
 
     <script>
         async function loadData() {
-            const response = await fetch('data/summary.csv');
-            const csvData = await response.text();
-            
-            const parsed = Papa.parse(csvData, { header: true });
-            return parsed.data;
-        }
-        
+            try {
+                const response = await fetch('edu-tanaka/manHour/data/summary.csv');
+                if (!response.ok) {
+                    console.error('CSV読み込みエラー:', response.status, response.statusText);
+                    return [];
+                }
+                const csvData = await response.text();
+                console.log('CSV取得成功:', csvData.substring(0, 200)); // CSVの先頭部分を表示
+                
+                const parsed = Papa.parse(csvData, { header: true });
+                console.log('パース結果:', parsed);
+                console.log('データ例:', parsed.data[0]); // 最初の行のデータを表示
+                
+                return parsed.data;
+            } catch (error) {
+                console.error('データ読み込みエラー:', error);
+                return [];
+            }
+        }        
         function renderTaskTable(data) {
             const tbody = document.querySelector('#taskTable tbody');
             tbody.innerHTML = '';
