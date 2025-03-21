@@ -51,20 +51,20 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
     StringBuilder sql = new StringBuilder();
     sql.append("SELECT ");
-    sql.append(" id, ");
-    sql.append(" legend_id, ");
-    sql.append(" user_name, ");
-    sql.append(" age, ");
-    sql.append(" play_date, ");
-    sql.append(" rating, ");
-    sql.append(" comment ");
+    sql.append("  id, ");
+    sql.append("  legend_id, ");
+    sql.append("  user_name, ");
+    sql.append("  age, ");
+    sql.append("  play_date, ");
+    sql.append("  rating, ");
+    sql.append("  comment ");
     sql.append("FROM ");
-    sql.append(" t_review ");
+    sql.append("  t_review ");
     sql.append("WHERE ");
-    sql.append(" legend_id = ? ");
+    sql.append("  legend_id = ? ");
     sql.append("ORDER BY ");
-    sql.append(" play_date DESC, ");
-    sql.append(" id ASC ");
+    sql.append("  play_date DESC, ");
+    sql.append("  id ASC ");
 
     return jdbcTemplate.queryForList(sql.toString(), legendId);
   }
@@ -79,15 +79,15 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
     StringBuilder sql = new StringBuilder();
     sql.append("UPDATE ");
-    sql.append(" t_review ");
+    sql.append("  t_review ");
     sql.append("SET ");
-    sql.append(" user_name = ?, ");
-    sql.append(" age = ?, ");
-    sql.append(" play_date = ?, ");
-    sql.append(" rating = ?, ");
-    sql.append(" comment = ? ");
+    sql.append("  user_name = ?, ");
+    sql.append("  age = ?, ");
+    sql.append("  play_date = ?, ");
+    sql.append("  rating = ?, ");
+    sql.append("  comment = ? ");
     sql.append("WHERE ");
-    sql.append(" id = ?");
+    sql.append("  id = ?");
 
     jdbcTemplate.update(
         sql.toString(),

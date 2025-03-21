@@ -26,25 +26,25 @@ public class LegendDetailsRepositoryImpl implements LegendDetailsRepository {
 
     StringBuilder sql = new StringBuilder();
     sql.append("SELECT ");
-    sql.append(" id, ");
-    sql.append(" name, ");
-    sql.append(" words, ");
-    sql.append(" picture_path, ");
-    sql.append(" real_name, ");
-    sql.append(" age, ");
-    sql.append(" age_note, ");
-    sql.append(" gender, ");
-    sql.append(" abilities, ");
-    sql.append(" abi_description, ");
-    sql.append(" passive, ");
-    sql.append(" pas_description, ");
-    sql.append(" ult, ");
-    sql.append(" ult_description, ");
-    sql.append(" sort_index ");
+    sql.append("  id, ");
+    sql.append("  name, ");
+    sql.append("  words, ");
+    sql.append("  picture_path, ");
+    sql.append("  real_name, ");
+    sql.append("  age, ");
+    sql.append("  age_note, ");
+    sql.append("  gender, ");
+    sql.append("  abilities, ");
+    sql.append("  abi_description, ");
+    sql.append("  passive, ");
+    sql.append("  pas_description, ");
+    sql.append("  ult, ");
+    sql.append("  ult_description, ");
+    sql.append("  sort_index ");
     sql.append("FROM ");
-    sql.append(" m_legend ");
+    sql.append("  m_legend ");
     sql.append("WHERE ");
-    sql.append(" id = ? ");
+    sql.append("  id = ? ");
 
     return jdbcTemplate.queryForList(sql.toString(), legendId);
   }

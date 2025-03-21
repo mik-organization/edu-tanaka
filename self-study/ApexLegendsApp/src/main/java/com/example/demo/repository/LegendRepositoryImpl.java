@@ -26,22 +26,22 @@ public class LegendRepositoryImpl implements LegendRepository {
 
     StringBuilder sql = new StringBuilder();
     sql.append("SELECT ");
-    sql.append(" ml.id, ");
-    sql.append(" ml.name, ");
-    sql.append(" ml.legend_class, ");
-    sql.append(" COALESCE(AVG(tr.rating), 0.0 ) average_rating ");
+    sql.append("  ml.id, ");
+    sql.append("  ml.name, ");
+    sql.append("  ml.legend_class, ");
+    sql.append("  COALESCE(AVG(tr.rating), 0.0 ) average_rating ");
     sql.append("FROM ");
-    sql.append(" m_legend ml ");
-    sql.append(" LEFT OUTER JOIN t_review tr ");
-    sql.append(" ON ml.id = tr.legend_id ");
+    sql.append("  m_legend ml ");
+    sql.append("  LEFT OUTER JOIN t_review tr ");
+    sql.append("  ON ml.id = tr.legend_id ");
     sql.append("WHERE ");
-    sql.append(" ml.name LIKE ? ");
+    sql.append("  ml.name LIKE ? ");
     sql.append("GROUP BY ");
-    sql.append(" ml.id, ");
-    sql.append(" ml.name, ");
-    sql.append(" ml.legend_class ");
+    sql.append("  ml.id, ");
+    sql.append("  ml.name, ");
+    sql.append("  ml.legend_class ");
     sql.append("ORDER BY ");
-    sql.append(" ml.sort_index ");
+    sql.append("  ml.sort_index ");
 
     String p = "%" + name + "%";
 
