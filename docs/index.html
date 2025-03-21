@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業時間予実ダッシュボード</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .chart-container {
+            width: 48%;
+            min-width: 400px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            height: 20px;
+            width: 100%;
+        }
+        .progress-value {
+            background-color: #4CAF50;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .delayed {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>作業時間予実ダッシュボード</h1>
+    
+    <div class="container">
+        <div class="chart-container">
+            <h2>カテゴリー別の予実比較</h2>
+            <canvas id="categoryChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h2>担当者別の予実比較</h2>
+            <canvas id="assigneeChart"></canvas>
+        </div>
+    </div>
+    
+    <h2>タスク一覧</h2>
+    <table id="taskTable">
+        <thead>
+            <tr>
+                <th>タスクID</th>
+                <th>タスク名</th>
+                <th>カテゴリー</th>
+                <th>担当者</th>
+                <th>予定時間</th>
+                <th>実績時間</th>
+                <th>進捗</th>
+                <th>ステータス</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function loadData() {
+            const response = await fetch('data/summary.csv');
+            const csvData = await response.text();
+            
+            const parsed = Papa.parse(csvData, { header: true });
+            return parsed.data;
+        }
+        
+        function renderTaskTable(data) {
+            const tbody = document.querySelector('#taskTable tbody');
+            tbody.innerHTML = '';
+            
+            data.forEach(task => {
+                const row = document.createElement('tr');
+                
+                // 進捗率の数値を抽出
+                const progressValue = parseFloat(task.progress_percent);
+                
+                row.innerHTML = `
+                    <td>${task.task_id}</td>
+                    <td>${task.task_name}</td>
+                    <td>${task.category}</td>
+                    <td>${task.assignee}</td>
+                    <td>${task.planned_hours}</td>
+                    <td>${task.actual_hours}</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value ${task.status === '遅延' ? 'delayed' : ''}" 
+                                 style="width: ${progressValue}%"></div>
+                        </div>
+                        ${task.progress_percent}
+                    </td>
+                    <td>${task.status}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+        
+        function renderCategoryChart(data) {
+            // カテゴリー別の集計
+            const categories = {};
+            data.forEach(task => {
+                if (!categories[task.category]) {
+                    categories[task.category] = {
+                        planned: 0,
+                        actual: 0
+                    };
+                }
+                categories[task.category].planned += parseFloat(task.planned_hours);
+                categories[task.category].actual += parseFloat(task.actual_hours);
+            });
+            
+            const categoryNames = Object.keys(categories);
+            const plannedValues = categoryNames.map(cat => categories[cat].planned);
+            const actualValues = categoryNames.map(cat => categories[cat].actual);
+            
+            const ctx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: categoryNames,
+                    datasets: [
+                        {
+                            label: '予定時間',
+                            data: plannedValues,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '実績時間',
+                            data: actualValues,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '時間'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function renderAssigneeChart(data) {
+            // 担当者別の集計
+            const assignees = {};
+            data.forEach(task => {
+                if (!assignees[task.assignee]) {
+                    assignees[task.assignee] = {
+                        planned: 0,
+                        actual: 0
+                    };
+                }
+                assignees[task.assignee].planned += parseFloat(task.planned_hours);
+                assignees[task.assignee].actual += parseFloat(task.actual_hours);
+            });
+            
+            const assigneeNames = Object.keys(assignees);
+            const plannedValues = assigneeNames.map(a => assignees[a].planned);
+            const actualValues = assigneeNames.map(a => assignees[a].actual);
+            
+            const ctx = document.getElementById('assigneeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: assigneeNames,
+                    datasets: [
+                        {
+                            label: '予定時間',
+                            data: plannedValues,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '実績時間',
+                            data: actualValues,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '時間'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        async function initDashboard() {
+            const data = await loadData();
+            renderTaskTable(data);
+            renderCategoryChart(data);
+            renderAssigneeChart(data);
+        }
+        
+        // ページ読み込み時に実行
+        window.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>
