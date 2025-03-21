@@ -11,7 +11,7 @@ public interface LegendListService {
    * レジェンド検索処理の型定義
    *
    * @param name
-   * @return 指定されたレジェンドリスト
+   * @return Legendに格納したList
    */
   List<Legend> findByNamecard(String name);
 }

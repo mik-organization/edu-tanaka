@@ -11,7 +11,7 @@ public interface LegendDetailsService {
    * レジェンド詳細取得の型定義
    *
    * @param legendId
-   * @return 指定されたレジェンド詳細リスト
+   * @return Detailsに格納したList
    */
   List<Details> findByLegendId(int legendId);
 }

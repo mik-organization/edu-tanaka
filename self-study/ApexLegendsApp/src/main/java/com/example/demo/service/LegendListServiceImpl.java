@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -20,13 +23,24 @@ public class LegendListServiceImpl implements LegendListService {
    * repositoryクラスへのアクセス
    *
    * @param name
-   * @return repositoryクラスから渡されたリスト
+   * @return legendに格納したList
    */
   @Override
   public List<Legend> findByNamecard(String name) {
 
-    List<Legend> list = repository.selectByNameWildcard(name);
+    List<Map<String, Object>> list = repository.selectByNameWildcard(name);
 
-    return list;
+    List<Legend> result = new ArrayList<Legend>();
+    for (Map<String, Object> one : list) {
+      Legend legend = new Legend();
+      legend.setLegendId((int) one.get("id"));
+      legend.setName((String) one.get("name"));
+      legend.setLegendClass((String) one.get("legend_class"));
+      double d = ((BigDecimal) one.get("average_rating")).doubleValue();
+      legend.setAverageRating(d);
+      result.add(legend);
+    }
+
+    return result;
   }
 }

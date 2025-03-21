@@ -1,14 +1,10 @@
 package com.example.demo.repository;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import com.example.demo.model.view.Legend;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,10 +19,10 @@ public class LegendRepositoryImpl implements LegendRepository {
    * DBからレジェンドを検索
    *
    * @param name
-   * @return legendへ格納したリストの結果
+   * @return 検索結果
    */
   @Override
-  public List<Legend> selectByNameWildcard(String name) {
+  public List<Map<String, Object>> selectByNameWildcard(String name) {
 
     StringBuilder sql = new StringBuilder();
     sql.append("SELECT ");
@@ -49,19 +45,6 @@ public class LegendRepositoryImpl implements LegendRepository {
 
     String p = "%" + name + "%";
 
-    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql.toString(), p);
-
-    List<Legend> result = new ArrayList<Legend>();
-    for (Map<String, Object> one : list) {
-      Legend legend = new Legend();
-      legend.setLegendId((int) one.get("id"));
-      legend.setName((String) one.get("name"));
-      legend.setLegendClass((String) one.get("legend_class"));
-      double d = ((BigDecimal) one.get("average_rating")).doubleValue();
-      legend.setAverageRating(d);
-      result.add(legend);
-    }
-
-    return result;
+    return jdbcTemplate.queryForList(sql.toString(), p);
   }
 }

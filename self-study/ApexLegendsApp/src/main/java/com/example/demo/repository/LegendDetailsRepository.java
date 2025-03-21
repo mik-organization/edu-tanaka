@@ -1,8 +1,7 @@
 package com.example.demo.repository;
 
 import java.util.List;
-
-import com.example.demo.model.view.Details;
+import java.util.Map;
 
 /** レジェンド詳細表示用のrepositoryインタフェース */
 public interface LegendDetailsRepository {
@@ -11,7 +10,7 @@ public interface LegendDetailsRepository {
    * レジェンド詳細取得の型定義
    *
    * @param legendId
-   * @return 指定されたレジェンド詳細リスト
+   * @return 検索結果
    */
-  List<Details> selectByLegendId(int legendId);
+  List<Map<String, Object>> selectByLegendId(int legendId);
 }

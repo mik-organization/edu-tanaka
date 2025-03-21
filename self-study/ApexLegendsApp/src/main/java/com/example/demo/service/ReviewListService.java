@@ -11,7 +11,7 @@ public interface ReviewListService {
    * レビュー表示処理の型定義
    *
    * @param legendId
-   * @return 指定されたレビューリスト
+   * @return Reviewに格納したList
    */
   List<Review> findByLegendId(int legendId);
 }

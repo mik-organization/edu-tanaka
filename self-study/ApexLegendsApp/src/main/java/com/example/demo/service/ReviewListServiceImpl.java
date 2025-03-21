@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -20,13 +23,26 @@ public class ReviewListServiceImpl implements ReviewListService {
    * repositoryクラスへのアクセス
    *
    * @param legendId
-   * @return repositoryクラスから返されたリスト *
+   * @return reviewに格納したList
    */
   @Override
   public List<Review> findByLegendId(int legendId) {
 
-    List<Review> list = repository.selectByLegendId(legendId);
+    List<Map<String, Object>> list = repository.selectByLegendId(legendId);
 
-    return list;
+    List<Review> result = new ArrayList<Review>();
+    for (Map<String, Object> one : list) {
+      Review review = new Review();
+      review.setId((int) one.get("id"));
+      review.setLegendId((int) one.get("legend_id"));
+      review.setUserName((String) one.get("user_name"));
+      review.setAge((Integer) one.get("age"));
+      review.setPlayDate((Date) one.get("play_date"));
+      review.setRating((Integer) one.get("rating"));
+      review.setComment((String) one.get("comment"));
+      result.add(review);
+    }
+
+    return result;
   }
 }

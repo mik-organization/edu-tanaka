@@ -1,8 +1,7 @@
 package com.example.demo.repository;
 
 import java.util.List;
-
-import com.example.demo.model.view.Legend;
+import java.util.Map;
 
 /** レジェンド検索用のrepositoryインタフェース */
 public interface LegendRepository {
@@ -11,7 +10,7 @@ public interface LegendRepository {
    * レジェンド検索の型定義
    *
    * @param name
-   * @return 指定されたレジェンドリスト
+   * @return 検索結果
    */
-  List<Legend> selectByNameWildcard(String name);
+  List<Map<String, Object>> selectByNameWildcard(String name);
 }

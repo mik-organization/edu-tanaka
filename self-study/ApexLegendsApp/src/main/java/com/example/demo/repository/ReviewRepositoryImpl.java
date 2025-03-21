@@ -1,7 +1,5 @@
 package com.example.demo.repository;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,10 +44,10 @@ public class ReviewRepositoryImpl implements ReviewRepository {
    * DBからレビューを検索
    *
    * @param legendId
-   * @return reviewへ格納したリストの結果
+   * @return 検索結果
    */
   @Override
-  public List<Review> selectByLegendId(int legendId) {
+  public List<Map<String, Object>> selectByLegendId(int legendId) {
 
     StringBuilder sql = new StringBuilder();
     sql.append("SELECT ");
@@ -68,22 +66,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     sql.append(" play_date DESC, ");
     sql.append(" id ASC ");
 
-    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql.toString(), legendId);
-
-    List<Review> result = new ArrayList<Review>();
-    for (Map<String, Object> one : list) {
-      Review review = new Review();
-      review.setId((int) one.get("id"));
-      review.setLegendId((int) one.get("legend_id"));
-      review.setUserName((String) one.get("user_name"));
-      review.setAge((Integer) one.get("age"));
-      review.setPlayDate((Date) one.get("play_date"));
-      review.setRating((Integer) one.get("rating"));
-      review.setComment((String) one.get("comment"));
-      result.add(review);
-    }
-
-    return result;
+    return jdbcTemplate.queryForList(sql.toString(), legendId);
   }
 
   /**
