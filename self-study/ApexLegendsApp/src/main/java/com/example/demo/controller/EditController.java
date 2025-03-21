@@ -21,10 +21,10 @@ public class EditController {
   public final EditService service;
 
   /**
-   * 編集画面表示リクエスト
+   * レビュー編集画面を表示します。
    *
-   * @param form
-   * @return 編集画面
+   * @param form レビュー編集フォーム
+   * @return レビュー編集画面のテンプレート名
    */
   @PostMapping("/show-edit-form")
   public String showReviewForm(@ModelAttribute ReviewEditForm form) {
