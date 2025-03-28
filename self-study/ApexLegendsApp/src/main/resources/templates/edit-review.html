@@ -12,15 +12,15 @@
 	<form th:action="@{/edit-review}" method="POST" th:object="${reviewEditForm}">
 		
 		【ID】<br>
-		<p th:text="*{reviewId}"></p>
-		<input type="hidden" th:field="*{reviewId}">
-		<div th:if="${#fields.hasErrors('reviewId')}" th:errors="*{reviewId}" class="error-msg"></div>
+		<p th:text="*{id}"></p>
+		<input type="hidden" th:field="*{id}">
+		<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="error-msg"></div>
 		<br>
 		【レジェンド名】<br>
-		<p th:text="*{regendsId} + ' ' + *{regendsName}"></p>
-		<input type="hidden" th:field="*{regendsId}">
-		<input type="hidden" th:field="*{regendsName}">
-		<div th:if="${#fields.hasErrors('regendsId')}" th:errors="*{regendsId}" class="error-msg"></div>
+		<p th:text="*{legendId} + ' ' + *{name}"></p>
+		<input type="hidden" th:field="*{legendId}">
+		<input type="hidden" th:field="*{name}">
+		<div th:if="${#fields.hasErrors('legendId')}" th:errors="*{legendId}" class="error-msg"></div>
 		<br>
 		【利用者名】<br>
 		<input type="text" th:field="*{userName}"><br>
@@ -53,11 +53,17 @@
 		<input type="submit" value="更新" class="btn">						
 	</form>
 	
-	<form th:action="@{/search-review}" method="POST" th:object="${reviewEditForm}">
-		<input type="hidden" th:field="*{regendsId}">
-		<input type="hidden" th:field="*{regendsName}">
-		<input type="submit" value="もどる" class="btn">
-	</form>
+<!--    <form th:action="@{/search-review}" method="POST" th:object="${reviewEditForm}">-->
+<!--		<input type="hidden" th:field="*{legendId}">-->
+<!--		<input type="hidden" th:field="*{name}">-->
+<!--		<input type="submit" value="もどる" class="btn">-->
+<!--	</form>-->
+  
+    <form th:action="@{/search-review}" method="POST" th:object="${reviewEditForm}">
+    <input type="hidden" th:field="*{legendId}">
+    <input type="hidden" th:field="*{name}">
+    <input type="submit" value="もどる" class="btn">
+  </form>
 	
 	<br>
 	<a th:href="@{/top}">トップ画面に戻る</a>
