@@ -50,6 +50,10 @@
         .delayed {
             background-color: #f44336;
         }
+        .details {
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -73,10 +77,12 @@
                 <th>タスクID</th>
                 <th>タスク名</th>
                 <th>カテゴリー</th>
-                <th>担当者</th>
+                <th>計画担当者</th>
                 <th>予定時間</th>
                 <th>実績時間</th>
                 <th>進捗</th>
+                <th>作業者別実績</th>
+                <th>作業期間</th>
                 <th>ステータス</th>
             </tr>
         </thead>
@@ -88,47 +94,66 @@
             try {
                 const response = await fetch('./data/summary.csv');
                 if (!response.ok) {
-                    console.error('CSV読み込みエラー:', response.status, response.statusText);
+                    console.error('CSV読み込みエラー:', response.status);
                     return [];
                 }
                 const csvData = await response.text();
-                console.log('CSV取得成功:', csvData.substring(0, 200)); // CSVの先頭部分を表示
                 
                 const parsed = Papa.parse(csvData, { header: true });
-                console.log('パース結果:', parsed);
-                console.log('データ例:', parsed.data[0]); // 最初の行のデータを表示
-                
                 return parsed.data;
             } catch (error) {
                 console.error('データ読み込みエラー:', error);
                 return [];
             }
-        }        
+        }
+        
         function renderTaskTable(data) {
             const tbody = document.querySelector('#taskTable tbody');
             tbody.innerHTML = '';
             
+            if (!data || data.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="10">データがありません</td>';
+                tbody.appendChild(row);
+                return;
+            }
+            
             data.forEach(task => {
                 const row = document.createElement('tr');
                 
-                // 進捗率の数値を抽出
-                const progressValue = parseFloat(task.progress_percent);
+                // nullやundefinedの場合は空文字列に置換
+                const safeValue = (val) => val === undefined || val === null ? '' : val;
+                
+                // 進捗率の数値を安全に抽出
+                const progressText = safeValue(task.progress_percent);
+                const progressValue = parseFloat(progressText) || 0;
+                
+                // 作業期間の表示
+                const firstDate = safeValue(task.first_work_date);
+                const lastDate = safeValue(task.last_work_date);
+                const workPeriod = firstDate !== '-' ? `${firstDate} 〜 ${lastDate}` : '-';
                 
                 row.innerHTML = `
-                    <td>${task.task_id}</td>
-                    <td>${task.task_name}</td>
-                    <td>${task.category}</td>
-                    <td>${task.assignee}</td>
-                    <td>${task.planned_hours}</td>
-                    <td>${task.actual_hours}</td>
+                    <td>${safeValue(task.task_id)}</td>
+                    <td>${safeValue(task.task_name)}</td>
+                    <td>${safeValue(task.category)}</td>
+                    <td>${safeValue(task.planned_assignee)}</td>
+                    <td>${safeValue(task.planned_hours)}</td>
+                    <td>${safeValue(task.actual_hours)}</td>
                     <td>
                         <div class="progress-bar">
-                            <div class="progress-value ${task.status === '遅延' ? 'delayed' : ''}" 
+                            <div class="progress-value ${safeValue(task.status) === '遅延' ? 'delayed' : ''}" 
                                  style="width: ${progressValue}%"></div>
                         </div>
-                        ${task.progress_percent}
+                        ${progressText}
+                        <div class="details">残り: ${safeValue(task.remaining_hours)}時間</div>
                     </td>
-                    <td>${task.status}</td>
+                    <td>${safeValue(task.contributors)}</td>
+                    <td>
+                        ${workPeriod}
+                        <div class="details">計画: ${safeValue(task.planned_start)} 〜 ${safeValue(task.planned_end)}</div>
+                    </td>
+                    <td>${safeValue(task.status)}</td>
                 `;
                 
                 tbody.appendChild(row);
@@ -139,14 +164,20 @@
             // カテゴリー別の集計
             const categories = {};
             data.forEach(task => {
+                if (!task.category) return;
+                
                 if (!categories[task.category]) {
                     categories[task.category] = {
                         planned: 0,
                         actual: 0
                     };
                 }
-                categories[task.category].planned += parseFloat(task.planned_hours);
-                categories[task.category].actual += parseFloat(task.actual_hours);
+                
+                const plannedHours = parseFloat(task.planned_hours) || 0;
+                const actualHours = parseFloat(task.actual_hours) || 0;
+                
+                categories[task.category].planned += plannedHours;
+                categories[task.category].actual += actualHours;
             });
             
             const categoryNames = Object.keys(categories);
@@ -190,17 +221,45 @@
         }
         
         function renderAssigneeChart(data) {
-            // 担当者別の集計
+            // 担当者別の集計（計画と実績を区別）
             const assignees = {};
+            
+            // 計画から担当者ごとの予定時間を集計
             data.forEach(task => {
-                if (!assignees[task.assignee]) {
-                    assignees[task.assignee] = {
+                const assignee = task.planned_assignee;
+                if (!assignee) return;
+                
+                if (!assignees[assignee]) {
+                    assignees[assignee] = {
                         planned: 0,
                         actual: 0
                     };
                 }
-                assignees[task.assignee].planned += parseFloat(task.planned_hours);
-                assignees[task.assignee].actual += parseFloat(task.actual_hours);
+                
+                const plannedHours = parseFloat(task.planned_hours) || 0;
+                assignees[assignee].planned += plannedHours;
+            });
+            
+            // 実績から担当者ごとの実績時間を集計
+            data.forEach(task => {
+                if (!task.contributors || task.contributors === 'なし') return;
+                
+                // "yamada: 5時間, tanaka: 3時間" のような形式を分解
+                const contributorParts = task.contributors.split(', ');
+                contributorParts.forEach(part => {
+                    const [assignee, hoursText] = part.split(': ');
+                    if (!assignee || !hoursText) return;
+                    
+                    if (!assignees[assignee]) {
+                        assignees[assignee] = {
+                            planned: 0,
+                            actual: 0
+                        };
+                    }
+                    
+                    const hours = parseFloat(hoursText) || 0;
+                    assignees[assignee].actual += hours;
+                });
             });
             
             const assigneeNames = Object.keys(assignees);
