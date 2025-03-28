@@ -8,9 +8,9 @@
 	
 	<h2>レジェンド詳細</h2>
 	
-	<div th:each="details : ${regendsDetails}">
-		<h1 th:text= "${details.regendsName}">Regends Name</h1>
-		<p th:text="～ + ${details.words} + ～" class="words">Regends Word</p> 
+	<div th:each="details : ${legendDetails}">
+		<h1 th:text= "${details.name}">Legend Name</h1>
+		<p th:text="～ + ${details.words} + ～" class="words">Legend Word</p> 
 
 		<div class="content">
 			<div class="image-container">
@@ -27,7 +27,7 @@
 
 		<div class="container">
 			<div class="left">
-				<p th:text="'年齢 : '+ '' + ${details.age}">Age</p>
+        <p th:text="'年齢 : ' + ${details.ageStr}">Age</p>
 			</div>
 		</div>
 

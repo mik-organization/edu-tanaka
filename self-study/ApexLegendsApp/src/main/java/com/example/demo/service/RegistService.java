@@ -1,9 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Review;
+import com.example.demo.model.view.Review;
 
+/** レビュー登録用のserviceインタフェース */
 public interface RegistService {
-	
-	void regist(Review review);
 
+  /**
+   * レビュー登録処理の型定義
+   *
+   * @param review
+   */
+  void regist(Review review);
 }

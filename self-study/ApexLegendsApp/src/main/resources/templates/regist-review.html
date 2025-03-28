@@ -12,10 +12,10 @@
 	<form th:action="@{/regist-review}" method="POST" th:object="${reviewRegistForm}">
 		
 		【レジェンド名】<br>
-		<p th:text="*{regendsId} + ' ' + *{regendsName}"></p>
-		<input type="hidden" th:field="*{regendsId}">
-		<input type="hidden" th:field="*{regendsName}">
-		<div th:if="${#fields.hasErrors('regendsId')}" th:errors="*{regendsId}" class="error-msg"></div>
+		<p th:text="*{legendId} + ' ' + *{name}"></p>
+		<input type="hidden" th:field="*{legendId}">
+		<input type="hidden" th:field="*{name}">
+<!--		<div th:if="${#fields.hasErrors('id')}" th:errors="*{legendId}" class="error-msg"></div>-->
 		<br>
 		【利用者名】<br>
 		<input type="text" th:field="*{userName}"><br>
