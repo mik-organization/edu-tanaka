@@ -1,24 +1,33 @@
 package com.example.demo.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * レジェンドマスタの情報を表すエンティティ
+ */
 @Entity
+@Table(name = "m_legend")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LegendApi {
+public class Legend {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column
+@Column(name="name", nullable=false)
   private String name;
+
   private String realName;
   private Integer age;
   private String ageNote;
@@ -32,5 +41,8 @@ public class LegendApi {
   private String ultDescripition;
   private String words;
   private String picturePath;
+  
+  @Column(name="sort_index", nullable=false)
   private Integer sortIndex;
+  
 }
