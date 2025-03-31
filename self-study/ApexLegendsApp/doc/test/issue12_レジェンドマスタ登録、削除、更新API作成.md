@@ -12,7 +12,7 @@
    - [ ] データベースに登録されていること  
 
 ### 異常系 METHOD間違い
-- METHOD「PUT」、URL「http:\//localhost:8080」、BODYに「"name":"ラプソディ"、"age":23、"sortIndex":28」を入力して、sendをクリック
+- METHOD「PUT」、URL「http:\//localhost:8080/legend」、BODYに「"name":"ラプソディ"、"age":23、"sortIndex":28」を入力して、sendをクリック
 
   - [ ] エラーが返されること（405 Method Not Allowed）  
 
