@@ -12,17 +12,17 @@
    - [ ] データベースに登録されていること  
 
 ### 異常系 METHOD間違い
-- METHOD「PUT」、URL「http:\//localhost:8080/legend」、BODYに「"name":"ラプソディ"、"age":23、"sortIndex":27」を入力して、sendをクリック
+- METHOD「PUT」、URL「http:\//localhost:8080/legend」、BODYに「"name":"フェード"、"age":55、"sortIndex":28」を入力して、sendをクリック
 
   - [ ] エラーが返されること（405 Method Not Allowed）  
 
 ### 異常系 URL間違い
-- METHOD「POST」、URL「http:\//localhost:8080」、BODYに「"name":"ラプソディ"、"age"=23、"sortIndex"=27」にしてsendをクリック
+- METHOD「POST」、URL「http:\//localhost:8080」、BODYに「"name":"フェード"、"age"=55、"sortIndex"=28」にしてsendをクリック
 
   - [ ] エラーが返されること（404 Not Found）  
 
 ### 異常系 id指定（URL間違い）
-- METHOD「POST」、URL「http:\//localhost:8080/legend/34」、BODYに「"name":"ラプソディ"、"age"=23、"sortIndex"=27」を入力して、sendをクリック
+- METHOD「POST」、URL「http:\//localhost:8080/legend/34」、BODYに「"name":"フェード"、"age"=55、"sortIndex"=28」を入力して、sendをクリック
 
   - [ ] エラーが返されること（405 Method Not Allowed）
 
