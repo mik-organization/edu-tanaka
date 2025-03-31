@@ -53,10 +53,16 @@
 
   - [ ] エラーが返されること（405 Method Not Allowed）  
 
+### 異常系 存在しないidを指定
+- METHOD「PUT」、URL「http:\//localhost:8080/legend/100」を入力して、sendをクリック
+
+  - [ ] エラーが返されること（500 Internal Server Error）
+  - [ ] エラーメッセージに「レジェンドID100は見つかりません」と表示  
+
 ### 異常系 id指定なし
 - METHOD「PUT」、URL「http:\//localhost:8080/legend」、BODYに「"name":"ラプソディ"、"age":23、"sortIndex":28」を入力して、sendをクリック
 
-  - [ ] エラーが返されること（405 Method Not Allowed）
+  - [ ] エラーが返されること（405 Method Not Allowed）  
 
 ## レジェン削除機能
 ### 正常系 レジェンド削除
@@ -71,8 +77,13 @@
 
   - [ ] エラーが返されること（405 Method Not Allowed）  
 
+### 異常系 存在しないidを指定
+- METHOD「DELETE」、URL「http:\//localhost:8080/legend/100」を入力して、sendをクリック
+
+  - [ ] エラーが返されること（500 Internal Server Error）
+  - [ ] エラーメッセージに「レジェンドID100は見つかりません」と表示  
+
 ### 異常系 id指定なし
 - METHOD「DELETE」、URL「http:\//localhost:8080/legend」を入力して、sendをクリック
 
   - [ ] エラーが返されること（405 Method Not Allowed）
-
