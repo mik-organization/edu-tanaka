@@ -7,20 +7,29 @@ import jakarta.validation.Valid;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.controller.validator.Validation;
+import com.example.demo.controller.validator.CalcRequestValidator;
 import com.example.demo.model.request.CalcRequest;
+
+import lombok.RequiredArgsConstructor;
 
 
 @RestController
 @RequestMapping("/calc")
 @Validated
+@RequiredArgsConstructor
 public class FourArithmeticController {
+	
+	private final CalcRequestValidator validator;
+	
 
+	
   /**
    * 和を返す
    */
@@ -51,15 +60,23 @@ public class FourArithmeticController {
     return bigDecimalNum1.multiply(bigDecimalNum2);
   }
 
+  
+  
   /**
    * 商を返す
    */
   @PostMapping("/divide")
+  @InitBinder
   public int divide(@Valid @RequestBody CalcRequest request, BindingResult result) throws BindException {
 
-    Validation.validationDivideRequest(request);
+
 
     return request.getNum1() / request.getNum2();
   }
+  
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(validator);
+	}
 
 }
