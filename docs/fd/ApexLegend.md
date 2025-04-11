@@ -15,34 +15,28 @@ database apex_db as DB
 autoNumber
 
 == 正常な登録 ==
-user -> LC : POST: /legend\n(JSONでレジェンド情報を送信)
-activate LC
+user -> LC++ : POST: /legend\n(JSONでレジェンド情報を送信)
 
 alt 登録成功
-LC -> LS : create(Legend)
-activate LS
+LC -> LS++ : create(Legend)
 
-LS -> LR : save(Legend)
-activate LR
+LS -> LR++ : save(Legend)
 
 note right of LR : JpaRepository経由でDBへアクセス
 
 LR -> DB : レジェンドを登録
-DB -->> LR : 保存されたレコード(Legend)
+LR <<-- DB : 保存されたレコード(Legend)
 
-LR -->> LS : 登録データを返す(Legend)
-deactivate LR
+LS <<-- LR-- : 登録データを返す(Legend)
 
-LS -->> LC : 登録データを返す(Legend)
-deactivate LS
+LC <<-- LS-- : 登録データを返す(Legend)
 
-LC -->> user : 200 登録データを返す(Legend) 
+user <<-- LC : 200 登録データを返す(Legend) 
 else 登録失敗
 autoNumber stop
-LC -->> user : 400 Bad Request\n エラー内容を返す
+user <<-- LC-- : 400 Bad Request\n エラー内容を返す
 end
-deactivate LC
+
 
 @enduml
 ```
-
