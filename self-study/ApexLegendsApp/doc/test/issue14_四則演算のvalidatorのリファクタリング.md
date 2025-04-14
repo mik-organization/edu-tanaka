@@ -201,5 +201,5 @@
 異常系のエラーでnum1とnum2がnullのときのエラー表示が四則演算によってバラバラ（別issueで対応予定）  
 
 ## テスト結果（エビデンス）
-- エビデンスは以下のフォルダに格納
+- エビデンスは以下のフォルダに格納  
 https://drive.google.com/drive/folders/1wuZPNrR78SzzMNyWwjO_E03PiuJmKcZx
