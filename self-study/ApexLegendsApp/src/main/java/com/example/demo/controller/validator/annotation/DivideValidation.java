@@ -11,18 +11,16 @@ import jakarta.validation.Payload;
 
 import com.example.demo.controller.validator.DivideValidator;
 
-/**
- * 除数（num2）が0かを検証するアノーテーションを作成
- */
+/** 除数（num2）が0かを検証するアノーテーションを作成 */
 @Documented
 @Constraint(validatedBy = DivideValidator.class)
-@Target({ ElementType.TYPE})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DivideValidation {
-	
-	String message() default "除数（num2）は0にはできません。";
-	
-	Class<?>[] groups() default {};
-	Class<? extends Payload>[] payload() default {};
 
+  String message() default "除数（num2）は0にはできません。";
+
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
 }

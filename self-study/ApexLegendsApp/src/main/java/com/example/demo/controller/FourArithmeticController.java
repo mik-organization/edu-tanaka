@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 import jakarta.validation.Valid;
 
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,24 +23,21 @@ public class FourArithmeticController {
 
   /** 和を返す */
   @PostMapping("/add")
-  public int add(@Valid @RequestBody CalcRequest request, BindingResult result)
-      throws BindException {
+  public int add(@Valid @RequestBody CalcRequest request) {
 
     return request.getNum1() + request.getNum2();
   }
 
   /** 差を返す */
   @PostMapping("/subtract")
-  public int subtract(@Valid @RequestBody CalcRequest request, BindingResult result)
-      throws BindException {
+  public int subtract(@Valid @RequestBody CalcRequest request) {
 
     return request.getNum1() - request.getNum2();
   }
 
   /** 積を返す */
   @PostMapping("/multiply")
-  public BigDecimal multiply(@Valid @RequestBody CalcRequest request, BindingResult result)
-      throws BindException {
+  public BigDecimal multiply(@Valid @RequestBody CalcRequest request) {
 
     BigDecimal bigDecimalNum1 = BigDecimal.valueOf(request.getNum1());
     BigDecimal bigDecimalNum2 = BigDecimal.valueOf(request.getNum2());
@@ -52,8 +47,7 @@ public class FourArithmeticController {
 
   /** 商を返す */
   @PostMapping("/divide")
-  public int divide(@Valid @RequestBody DivideRequest request, BindingResult result)
-      throws BindException {
+  public int divide(@Valid @RequestBody DivideRequest request) {
 
     return request.getNum1() / request.getNum2();
   }
