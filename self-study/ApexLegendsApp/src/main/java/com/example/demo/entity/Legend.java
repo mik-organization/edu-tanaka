@@ -36,9 +36,9 @@ public class Legend {
   private String abilities;
   private String abiDescription;
   private String passive;
-  private String pasDescripition;
+  private String pasDescription;
   private String ult;
-  private String ultDescripition;
+  private String ultDescription;
   private String words;
   private String picturePath;
   

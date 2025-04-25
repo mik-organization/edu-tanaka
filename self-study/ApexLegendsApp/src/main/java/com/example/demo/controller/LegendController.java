@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,6 +24,33 @@ import lombok.RequiredArgsConstructor;
 public class LegendController {
 
   private final LegendService service;
+
+  /**
+   * 全レジェンドの一覧を返します。
+   *
+   * @return 全レジェンドの一覧
+   */
+  @GetMapping
+  public ResponseEntity<List<Legend>> getAllLegend() {
+
+    List<Legend> getAllLegend = service.getAllLegend();
+
+    return ResponseEntity.ok(getAllLegend);
+  }
+
+  /**
+   * レジェンド名で部分一致した検索結果を返します。
+   *
+   * @param name レジェンド名
+   * @return 検索した結果
+   */
+  @GetMapping("/{name}")
+  public ResponseEntity<List<Legend>> getSearchLegend(@PathVariable String name) {
+
+    List<Legend> foundLegend = service.getLegendByName(name);
+
+    return ResponseEntity.ok(foundLegend);
+  }
 
   /**
    * レジェンドを新規作成した結果を返します。

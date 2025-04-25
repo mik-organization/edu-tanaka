@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -15,6 +16,27 @@ import lombok.RequiredArgsConstructor;
 public class LegendService {
 
   private final LegendApiRepository repository;
+
+  /**
+   * 全レジェンドの情報を返します。
+   *
+   * @return 全レジェンド一覧
+   */
+  public List<Legend> getAllLegend() {
+
+    return repository.findAll();
+  }
+
+  /**
+   * レジェンド名にて部分一致したレジェンドを返します。
+   *
+   * @param 入力された文字
+   * @return 部分一致したレジェンド
+   */
+  public List<Legend> getLegendByName(String name) {
+
+    return repository.findByNameContaining(name);
+  }
 
   /**
    * レジェンドを新規作成し、作成結果を返します。
@@ -48,9 +70,9 @@ public class LegendService {
       v.setAbilities(legend.getAbilities());
       v.setAbiDescription(legend.getAbiDescription());
       v.setPassive(legend.getPassive());
-      v.setPasDescripition(legend.getPasDescripition());
+      v.setPasDescription(legend.getPasDescription());
       v.setUlt(legend.getUlt());
-      v.setUltDescripition(legend.getUltDescripition());
+      v.setUltDescription(legend.getUltDescription());
       v.setWords(legend.getWords());
       v.setPicturePath(legend.getPicturePath());
       v.setSortIndex(legend.getSortIndex());
