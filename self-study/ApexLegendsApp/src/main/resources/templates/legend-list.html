@@ -9,7 +9,7 @@
 	
 	<h2>レジェンド検索</h2>
 	<form th:action="@{/legend-search}" method="POST" th:object="${legendSearchForm}">
-		【レジェンド名】（部分一致）<br><br>
+		【レジェンド名】（部分一致）/カナ<br><br>
 		<input type="text" th:field="*{name}" class="search"><br>
 		<br>
 		<input type="submit" value="検索" class="btn">
