@@ -35,7 +35,7 @@ public class LegendRepositoryImpl implements LegendRepository {
     sql.append("  LEFT OUTER JOIN t_review tr ");
     sql.append("  ON ml.id = tr.legend_id ");
     sql.append("WHERE ");
-    sql.append("  ml.name LIKE ? ");
+    sql.append("  ml.name LIKE BINARY ? ");
     sql.append("GROUP BY ");
     sql.append("  ml.id, ");
     sql.append("  ml.name, ");
